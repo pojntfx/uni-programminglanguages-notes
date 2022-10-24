@@ -1,0 +1,11 @@
+commit 37859a094af35dd19d0c6ba3a61f83ba98ef0015
+Author: Felicitas Pojtinger <felicitas@pojtinger.com>
+Date:   Mon Oct 24 19:23:26 2022 +0200
+
+    feat: Add basic structure
+
+commit dbf0bdbe8732b90cbd76c01a249e7f489193a56c
+Author: Felicitas Pojtinger <felicitas@pojtinger.com>
+Date:   Mon Oct 24 18:23:10 2022 +0200
+
+    Initial commit
