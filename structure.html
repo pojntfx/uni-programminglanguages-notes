@@ -7,7 +7,7 @@
   <meta name="author" content="Felicitas Pojtinger (fp036)" />
   <meta name="dcterms.date" content="2022-10-24" />
   <meta name="keywords" content="hdm-stuttgart, programming-languages" />
-  <title>Uni Programming Languages Notes</title>
+  <title>Uni Programming Languages Notes (Structure)</title>
   <style>
     html {
       line-height: 1.5;
@@ -152,7 +152,7 @@
 </head>
 <body>
 <header id="title-block-header">
-<h1 class="title">Uni Programming Languages Notes</h1>
+<h1 class="title">Uni Programming Languages Notes (Structure)</h1>
 <p class="author">Felicitas Pojtinger (fp036)</p>
 <p class="date">2022-10-24</p>
 </header>
@@ -163,13 +163,7 @@
 <li><a href="#contributing"><span class="toc-section-number">1.1.1</span> Contributing</a></li>
 <li><a href="#license"><span class="toc-section-number">1.1.2</span> License</a></li>
 </ul></li>
-<li><a href="#overview"><span class="toc-section-number">1.2</span> Overview</a>
-<ul>
-<li><a href="#general-design"><span class="toc-section-number">1.2.1</span> General Design</a></li>
-<li><a href="#implementation-details"><span class="toc-section-number">1.2.2</span> Implementation Details</a></li>
-<li><a href="#users"><span class="toc-section-number">1.2.3</span> Users</a></li>
-<li><a href="#timeline"><span class="toc-section-number">1.2.4</span> Timeline</a></li>
-</ul></li>
+<li><a href="#structure"><span class="toc-section-number">1.2</span> Structure</a></li>
 </ul>
 </nav>
 <section id="introduction" data-number="0.1">
@@ -192,57 +186,19 @@
 <p>SPDX-License-Identifier: AGPL-3.0 </p>
 </section>
 </section>
-<section id="overview" data-number="0.2">
-<h2 data-number="1.2"><span class="header-section-number">1.2</span> Overview</h2>
-<section id="general-design" data-number="0.2.1">
-<h3 data-number="1.2.1"><span class="header-section-number">1.2.1</span> General Design</h3>
+<section id="structure" data-number="0.2">
+<h2 data-number="1.2"><span class="header-section-number">1.2</span> Structure</h2>
 <ul>
-<li>“A dynamic, open source programming language with a focus on simplicity and productivity. It has an elegant syntax that is natural to read and easy to write.”</li>
-<li>Inspired by Perl, Smalltalk, Eiffel, Ada, Lips</li>
-<li>Multi-paradigm from the beginning: Functional, imperative and object-oriented</li>
-<li>Radical object orientation: Everything is an object, there are no primitive types like in Java (<code>5.times { print &quot;We *love* Ruby -- it&#39;s outrageous!&quot; }</code>)</li>
-<li>Very flexible, i.e. operators can be redefined</li>
-<li>Built-in blocks (closures) from the start, excellent mapreduce capabilities</li>
-<li>Prefers mixins over inheritance</li>
-<li>Syntax uses limited punctuation with some notable exceptions (instance variables with <code>@</code>, globals with <code>$</code> etc.)</li>
+<li>Introduction</li>
+<li>Timeline and future</li>
+<li>Syntax</li>
+<li>Type system</li>
+<li>Unique features (regex matching, DSLs, runtime extensions, metaprogramming etc.)</li>
+<li>Package manager</li>
+<li>Interpreters</li>
+<li>Frameworks</li>
+<li>Popular users</li>
 </ul>
-</section>
-<section id="implementation-details" data-number="0.2.2">
-<h3 data-number="1.2.2"><span class="header-section-number">1.2.2</span> Implementation Details</h3>
-<ul>
-<li>Exception handling similar to Java &amp; Python, but no checked exceptions</li>
-<li>Garbage collection without reference counts</li>
-<li>Simple C/C++ extension interface</li>
-<li>OS independent threading &amp; Fibers, even if OS is single-threaded (like MS-DOS)</li>
-<li>Cross-platform: Linux, macOS, Windows, FreeBSD etc.</li>
-<li>Many implementation (MRI/CRuby, JRuby for Ruby in the JVM, TruffleRuby on GraalVM, mruby for embedded uses, Artichoke for WebAssembly and Rust)</li>
-</ul>
-</section>
-<section id="users" data-number="0.2.3">
-<h3 data-number="1.2.3"><span class="header-section-number">1.2.3</span> Users</h3>
-<ul>
-<li>Twitter</li>
-<li>Mastodon</li>
-<li>GitHub</li>
-<li>Airbnb</li>
-<li>Shopify</li>
-<li>Twitch</li>
-<li>Stripe</li>
-<li>Etsy</li>
-<li>Soundcloud</li>
-<li>Basecamp</li>
-<li>Kickstarter</li>
-</ul>
-</section>
-<section id="timeline" data-number="0.2.4">
-<h3 data-number="1.2.4"><span class="header-section-number">1.2.4</span> Timeline</h3>
-<ul>
-<li>First concepts and prototypes ~1993</li>
-<li>First release ~1995, became most popular language in Japan by 2000</li>
-<li>Subsequent evolution and growth outside Japan</li>
-<li>Ruby 3.0 released ~2020, introducing a type system for static analysis, fibers (similar to Goroutines, asyncio etc.), and completing optimizations making it ~3x faster than Ruby 2.0 (from 2013)</li>
-</ul>
-</section>
 </section>
 </body>
 </html>

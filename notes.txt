@@ -1,11 +1,15 @@
-Uni Programming Languages Notes (Structure)
+Uni Programming Languages Notes
 Felicitas Pojtinger (fp036)
 2022-10-24
 
 -   1 Introduction
     -   1.1 Contributing
     -   1.2 License
--   2 Structure
+-   2 Overview
+    -   2.1 General Design
+    -   2.2 Implementation Details
+    -   2.3 Users
+    -   2.4 Timeline
 
 Introduction
 
@@ -30,15 +34,59 @@ contributors
 
 SPDX-License-Identifier: AGPL-3.0
 
-Structure
+Overview
 
--   Introduction
--   Timeline and future
--   Syntax
--   Type system
--   Unique features (regex matching, DSLs, runtime extensions,
-    metaprogramming etc.)
--   Package manager
--   Interpreters
--   Frameworks
--   Popular users
+General Design
+
+-   “A dynamic, open source programming language with a focus on
+    simplicity and productivity. It has an elegant syntax that is
+    natural to read and easy to write.”
+-   Inspired by Perl, Smalltalk, Eiffel, Ada, Lips
+-   Multi-paradigm from the beginning: Functional, imperative and
+    object-oriented
+-   Radical object orientation: Everything is an object, there are no
+    primitive types like in Java
+    (5.times { print "We *love* Ruby -- it's outrageous!" })
+-   Very flexible, i.e. operators can be redefined
+-   Built-in blocks (closures) from the start, excellent mapreduce
+    capabilities
+-   Prefers mixins over inheritance
+-   Syntax uses limited punctuation with some notable exceptions
+    (instance variables with @, globals with $ etc.)
+
+Implementation Details
+
+-   Exception handling similar to Java & Python, but no checked
+    exceptions
+-   Garbage collection without reference counts
+-   Simple C/C++ extension interface
+-   OS independent threading & Fibers, even if OS is single-threaded
+    (like MS-DOS)
+-   Cross-platform: Linux, macOS, Windows, FreeBSD etc.
+-   Many implementation (MRI/CRuby, JRuby for Ruby in the JVM,
+    TruffleRuby on GraalVM, mruby for embedded uses, Artichoke for
+    WebAssembly and Rust)
+
+Users
+
+-   Twitter
+-   Mastodon
+-   GitHub
+-   Airbnb
+-   Shopify
+-   Twitch
+-   Stripe
+-   Etsy
+-   Soundcloud
+-   Basecamp
+-   Kickstarter
+
+Timeline
+
+-   First concepts and prototypes ~1993
+-   First release ~1995, became most popular language in Japan by 2000
+-   Subsequent evolution and growth outside Japan
+-   Ruby 3.0 released ~2020, introducing a type system for static
+    analysis, fibers (similar to Goroutines, asyncio etc.), and
+    completing optimizations making it ~3x faster than Ruby 2.0
+    (from 2013)
