@@ -145,6 +145,69 @@
     div.column{display: inline-block; vertical-align: top; width: 50%;}
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
     ul.task-list{list-style: none;}
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
   </style>
   <!--[if lt IE 9]>
     <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
@@ -169,6 +232,12 @@
 <li><a href="#implementation-details"><span class="toc-section-number">1.2.2</span> Implementation Details</a></li>
 <li><a href="#users"><span class="toc-section-number">1.2.3</span> Users</a></li>
 <li><a href="#timeline"><span class="toc-section-number">1.2.4</span> Timeline</a></li>
+</ul></li>
+<li><a href="#syntax"><span class="toc-section-number">1.3</span> Syntax</a>
+<ul>
+<li><a href="#logic"><span class="toc-section-number">1.3.1</span> Logic</a></li>
+<li><a href="#loops"><span class="toc-section-number">1.3.2</span> Loops</a></li>
+<li><a href="#arrays"><span class="toc-section-number">1.3.3</span> Arrays</a></li>
 </ul></li>
 </ul>
 </nav>
@@ -242,6 +311,197 @@
 <li>Subsequent evolution and growth outside Japan</li>
 <li>Ruby 3.0 released ~2020, introducing a type system for static analysis, fibers (similar to Goroutines, asyncio etc.), and completing optimizations making it ~3x faster than Ruby 2.0 (from 2013)</li>
 </ul>
+</section>
+</section>
+<section id="syntax" data-number="0.3">
+<h2 data-number="1.3"><span class="header-section-number">1.3</span> Syntax</h2>
+<section id="logic" data-number="0.3.1">
+<h3 data-number="1.3.1"><span class="header-section-number">1.3.1</span> Logic</h3>
+<p>Typical logical operators:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode ruby"><code class="sourceCode ruby"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&gt;&gt;</span> <span class="dv">2</span> <span class="kw">&lt;</span> <span class="dv">3</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="kw">=&gt;</span> <span class="dv">true</span></span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode ruby"><code class="sourceCode ruby"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&gt;&gt;</span> <span class="dv">1</span> <span class="kw">==</span> <span class="dv">2</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="kw">=&gt;</span> <span class="dv">false</span></span></code></pre></div>
+<p>Comparisons are type checked:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode ruby"><code class="sourceCode ruby"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&gt;&gt;</span> <span class="dv">1</span> <span class="kw">==</span> <span class="st">&quot;1&quot;</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="kw">=&gt;</span> <span class="dv">false</span></span></code></pre></div>
+<p>Trip equals can be used to check if if an instance belongs to a class:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode ruby"><code class="sourceCode ruby"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&gt;&gt;</span> <span class="dt">String</span> <span class="kw">===</span> <span class="st">&quot;abc&quot;</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="kw">=&gt;</span> <span class="dv">true</span></span></code></pre></div>
+<p>If, else, etc work as expected:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode ruby"><code class="sourceCode ruby"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> name <span class="kw">==</span> <span class="st">&quot;Zigor&quot;</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">puts</span> <span class="st">&quot;</span><span class="sc">#{</span>name<span class="sc">}</span><span class="st"> is intelligent&quot;</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="cf">end</span></span></code></pre></div>
+<p>However Ruby also allows interesting variations of this, such as putting the comparions behind the block to execute:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode ruby"><code class="sourceCode ruby"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">puts</span> <span class="st">&quot;</span><span class="sc">#{</span>name<span class="sc">}</span><span class="st"> is genius&quot;</span> <span class="cf">if</span> name <span class="kw">==</span> <span class="st">&quot;Zigor&quot;</span></span></code></pre></div>
+<p>We can also use <code>unless</code>, which is a more natural way to check for negated expressions:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode ruby"><code class="sourceCode ruby"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">p</span> <span class="st">&quot;You are a minor&quot;</span> <span class="cf">unless</span> age <span class="kw">&gt;=</span> <span class="dv">18</span></span></code></pre></div>
+<p><code>switch</code> statements are known as <code>case</code> statements, but don’t <code>fallthrough</code> by default like in Java:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode ruby"><code class="sourceCode ruby"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="cf">case</span> a</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">when</span> <span class="dv">1</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    spell <span class="kw">=</span> <span class="st">&quot;one&quot;</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="cf">when</span> <span class="dv">2</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>    spell <span class="kw">=</span> <span class="st">&quot;two&quot;</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>  <span class="cf">when</span> <span class="dv">3</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>    spell <span class="kw">=</span> <span class="st">&quot;three&quot;</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>  <span class="cf">when</span> <span class="dv">4</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>    spell <span class="kw">=</span> <span class="st">&quot;four&quot;</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>  <span class="cf">when</span> <span class="dv">5</span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>    spell <span class="kw">=</span> <span class="st">&quot;five&quot;</span></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>  <span class="cf">else</span></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>    spell <span class="kw">=</span> <span class="dv">nil</span></span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a><span class="cf">end</span></span></code></pre></div>
+<p>Since everything is an object, we can also use <code>case</code> statements to check if instances are of a class:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode ruby"><code class="sourceCode ruby"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>a <span class="kw">=</span> <span class="st">&quot;Zigor&quot;</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="cf">case</span> a</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="cf">when</span> <span class="dt">String</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">puts</span> <span class="st">&quot;Its a string&quot;</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="cf">when</span> <span class="dt">Fixnum</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">puts</span> <span class="st">&quot;Its a number&quot;</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="cf">end</span></span></code></pre></div>
+<p>As mentioned before, Ruby is a very flexible language. The case statement for example also allows to us to check regular expressions:</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode ruby"><code class="sourceCode ruby"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="cf">case</span> string</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="cf">when</span> <span class="ss">/Ruby/</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">puts</span> <span class="st">&quot;string contains Ruby&quot;</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">puts</span> <span class="st">&quot;string does not contain Ruby&quot;</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="cf">end</span></span></code></pre></div>
+<p>We can even use Lambdas in case statements, making long <code>if ... else</code> blocks unnecessary:</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode ruby"><code class="sourceCode ruby"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="cf">case</span> num</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="cf">when</span> <span class="kw">-&gt;</span> (n) <span class="kw">{</span> n <span class="kw">%</span> <span class="dv">2</span> <span class="kw">==</span> <span class="dv">0</span> <span class="kw">}</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">puts</span> <span class="st">&quot;</span><span class="sc">#{</span>num<span class="sc">}</span><span class="st"> is even&quot;</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">puts</span> <span class="st">&quot;</span><span class="sc">#{</span>num<span class="sc">}</span><span class="st"> is odd&quot;</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="cf">end</span></span></code></pre></div>
+<p>And the object orientation becomes very clear; we can even define our own matcher classes:</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode ruby"><code class="sourceCode ruby"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="cf">class</span> <span class="dt">Zigor</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">def</span> <span class="dv">self</span><span class="kw">.===</span>(string)</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    string<span class="at">.downcase</span> <span class="kw">==</span> <span class="st">&quot;zigor&quot;</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="cf">end</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="cf">end</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>name <span class="kw">=</span> <span class="st">&quot;Zigor&quot;</span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a><span class="cf">case</span> name</span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a><span class="cf">when</span> <span class="dt">Zigor</span></span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">puts</span> <span class="st">&quot;Nice to meet you Zigor!!!&quot;</span></span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span></span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">puts</span> <span class="st">&quot;Who are you?&quot;</span></span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a><span class="cf">end</span></span></code></pre></div>
+</section>
+<section id="loops" data-number="0.3.2">
+<h3 data-number="1.3.2"><span class="header-section-number">1.3.2</span> Loops</h3>
+<p>Ruby does not have traditional for loops, but multiple, more general constructs that allow for the usecases.</p>
+<p>Ruby has the <code>for</code> loop that we are all used to, but also more specialized constructs that allow for more expressive usecases:</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode ruby"><code class="sourceCode ruby"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="cf">in</span> <span class="dv">0</span><span class="kw">..</span><span class="dv">10</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">p</span> i</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="cf">end</span></span></code></pre></div>
+<p>For example <code>upto</code> and <code>downto</code> methods:</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode ruby"><code class="sourceCode ruby"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="dv">10</span><span class="at">.downto</span> <span class="dv">1</span> <span class="cf">do</span> <span class="kw">|</span>num<span class="kw">|</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">p</span> num</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="cf">end</span></span></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode ruby"><code class="sourceCode ruby"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="dv">17</span><span class="at">.upto</span> <span class="dv">23</span> <span class="cf">do</span> <span class="kw">|</span>i<span class="kw">|</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span> <span class="st">&quot;</span><span class="sc">#{</span>i<span class="sc">}</span><span class="st">, &quot;</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="cf">end</span></span></code></pre></div>
+<p>Or the <code>times</code> method, which is much more readable:</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode ruby"><code class="sourceCode ruby"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="dv">7</span><span class="at">.times</span> <span class="cf">do</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">puts</span> <span class="st">&quot;I know something&quot;</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="cf">end</span></span></code></pre></div>
+<p><code>while</code>, <code>until</code> and the infinite <code>loop</code> loops still exist however:</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode ruby"><code class="sourceCode ruby"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>i<span class="kw">=</span><span class="dv">1</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>while i<span class="kw">&lt;=</span><span class="dv">10</span> <span class="cf">do</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span> <span class="st">&quot;</span><span class="sc">#{</span>i<span class="sc">}</span><span class="st">, &quot;</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>  i<span class="kw">+=</span><span class="dv">1</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="cf">end</span></span></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode ruby"><code class="sourceCode ruby"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>i<span class="kw">=</span><span class="dv">1</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="cf">until</span> i<span class="kw">&gt;</span><span class="dv">10</span> <span class="cf">do</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span> <span class="st">&quot;</span><span class="sc">#{</span>i<span class="sc">}</span><span class="st">, &quot;</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>  i<span class="kw">+=</span><span class="dv">1</span></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="cf">end</span></span></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode ruby"><code class="sourceCode ruby"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">loop</span> <span class="cf">do</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">puts</span> <span class="st">&quot;I Love Ruby&quot;</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="cf">end</span></span></code></pre></div>
+<p>We can also use <code>break</code>, <code>next</code> and <code>redo</code> within a loop’s block:</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode ruby"><code class="sourceCode ruby"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span><span class="at">.upto</span> <span class="dv">10</span> <span class="cf">do</span> <span class="kw">|</span>i<span class="kw">|</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">break</span> <span class="cf">if</span> i <span class="kw">==</span> <span class="dv">6</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span> <span class="st">&quot;</span><span class="sc">#{</span>i<span class="sc">}</span><span class="st">, &quot;</span></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="cf">end</span></span></code></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode ruby"><code class="sourceCode ruby"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="dv">10</span><span class="at">.times</span> <span class="cf">do</span> <span class="kw">|</span>num<span class="kw">|</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">next</span> <span class="cf">if</span> num <span class="kw">==</span> <span class="dv">6</span></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">puts</span> num</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="cf">end</span></span></code></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode ruby"><code class="sourceCode ruby"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="dv">5</span><span class="at">.times</span> <span class="cf">do</span> <span class="kw">|</span>num<span class="kw">|</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">puts</span> <span class="st">&quot;num = </span><span class="sc">#{</span>num<span class="sc">}</span><span class="st">&quot;</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">puts</span> <span class="st">&quot;Do you want to redo? (y/n): &quot;</span></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>  option <span class="kw">=</span> <span class="fu">gets</span><span class="at">.chop</span></span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>  <span class="cf">redo</span> <span class="cf">if</span> option <span class="kw">==</span> <span class="ch">&#39;y&#39;</span></span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a><span class="cf">end</span></span></code></pre></div>
+</section>
+<section id="arrays" data-number="0.3.3">
+<h3 data-number="1.3.3"><span class="header-section-number">1.3.3</span> Arrays</h3>
+<p>Arrays in Ruby can contain multiple types and work as expected; there is no array vs collection divide:</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode ruby"><code class="sourceCode ruby"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>my_array <span class="kw">=</span> <span class="kw">[</span><span class="st">&quot;Something&quot;</span>, <span class="dv">123</span>, <span class="dt">Time</span><span class="at">.now</span><span class="kw">]</span></span></code></pre></div>
+<p>Instead of loops you can use the <code>each</code> method to iterate:</p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode ruby"><code class="sourceCode ruby"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>my_array<span class="at">.each</span> <span class="cf">do</span> <span class="kw">|</span>element<span class="kw">|</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">puts</span> element</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="cf">end</span></span></code></pre></div>
+<p>We can use <code>&lt;&lt;</code> to add things to an array:</p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode ruby"><code class="sourceCode ruby"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&gt;&gt;</span> countries <span class="kw">&lt;&lt;</span> <span class="st">&quot;India&quot;</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="kw">=&gt;</span> <span class="kw">[</span><span class="st">&quot;India&quot;</span><span class="kw">]</span></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="kw">&gt;&gt;</span> countries</span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a><span class="kw">=&gt;</span> <span class="kw">[</span><span class="st">&quot;India&quot;</span><span class="kw">]</span></span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a><span class="kw">&gt;&gt;</span> countries<span class="at">.size</span></span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a><span class="kw">=&gt;</span> <span class="dv">1</span></span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a><span class="kw">&gt;&gt;</span> countries<span class="at">.count</span></span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a><span class="kw">=&gt;</span> <span class="dv">1</span></span></code></pre></div>
+<p>And access elements with <code>[0]</code>:</p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode ruby"><code class="sourceCode ruby"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&gt;&gt;</span> countries<span class="kw">[</span><span class="dv">0</span><span class="kw">]</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="kw">=&gt;</span> <span class="st">&quot;India&quot;</span></span></code></pre></div>
+<p>Thanks to the <code>..</code> syntax we can also access multiple elements at once in a very simple way:</p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode ruby"><code class="sourceCode ruby"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&gt;&gt;</span> countries<span class="kw">[</span><span class="dv">4</span><span class="kw">..</span><span class="dv">9</span><span class="kw">]</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="kw">=&gt;</span> <span class="kw">[</span><span class="st">&quot;China&quot;</span>, <span class="st">&quot;Niger&quot;</span>, <span class="st">&quot;Uganda&quot;</span>, <span class="st">&quot;Ireland&quot;</span><span class="kw">]</span></span></code></pre></div>
+<p>And use the <code>includes?</code> method (note the <code>?</code>!) to check if elements are present:</p>
+<div class="sourceCode" id="cb28"><pre class="sourceCode ruby"><code class="sourceCode ruby"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&gt;&gt;</span> countries<span class="at">.include?</span> <span class="st">&quot;Somalia&quot;</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="kw">=&gt;</span> <span class="dv">true</span></span></code></pre></div>
+<p>And <code>delete</code> to delete elements:</p>
+<div class="sourceCode" id="cb29"><pre class="sourceCode ruby"><code class="sourceCode ruby"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&gt;&gt;</span> countries<span class="at">.delete</span> <span class="st">&quot;USA&quot;</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="kw">=&gt;</span> <span class="st">&quot;USA&quot;</span></span></code></pre></div>
+<p>If we have a nested array, using <code>dig</code> fill allow us to find deeply nested elements in a simple way:</p>
+<div class="sourceCode" id="cb30"><pre class="sourceCode ruby"><code class="sourceCode ruby"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&gt;&gt;</span> array <span class="kw">=</span> <span class="kw">[</span><span class="dv">1</span>, <span class="dv">5</span>, <span class="kw">[</span><span class="dv">7</span>, <span class="dv">9</span>, <span class="dv">11</span>, <span class="kw">[</span><span class="st">&quot;Treasure&quot;</span><span class="kw">]</span>, <span class="st">&quot;Sigma&quot;</span><span class="kw">]]</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="kw">=&gt;</span> <span class="kw">[</span><span class="dv">1</span>, <span class="dv">5</span>, <span class="kw">[</span><span class="dv">7</span>, <span class="dv">9</span>, <span class="dv">11</span>, <span class="kw">[</span><span class="st">&quot;Treasure&quot;</span><span class="kw">]</span>, <span class="st">&quot;Sigma&quot;</span><span class="kw">]]</span></span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a><span class="kw">&gt;&gt;</span> array<span class="at">.dig</span>(<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">0</span>)</span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a><span class="kw">=&gt;</span> <span class="st">&quot;Treasure&quot;</span></span></code></pre></div>
+<p>Another very useful set of features are set operations, allowing us to modify arrays in a simple way, for example we can use the <code>&amp;</code> operator to find elements that are in two arrays:</p>
+<div class="sourceCode" id="cb31"><pre class="sourceCode ruby"><code class="sourceCode ruby"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&gt;&gt;</span> volleyball <span class="kw">=</span> <span class="kw">[</span><span class="st">&quot;Ashok&quot;</span>, <span class="st">&quot;Chavan&quot;</span>, <span class="st">&quot;Karthik&quot;</span>, <span class="st">&quot;Jesus&quot;</span>, <span class="st">&quot;Budha&quot;</span><span class="kw">]</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="kw">=&gt;</span> <span class="kw">[</span><span class="st">&quot;Ashok&quot;</span>, <span class="st">&quot;Chavan&quot;</span>, <span class="st">&quot;Karthik&quot;</span>, <span class="st">&quot;Jesus&quot;</span>, <span class="st">&quot;Budha&quot;</span><span class="kw">]</span></span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a><span class="kw">&gt;&gt;</span> cricket <span class="kw">=</span> <span class="kw">[</span><span class="st">&quot;Budha&quot;</span>, <span class="st">&quot;Karthik&quot;</span>, <span class="st">&quot;Ragu&quot;</span>, <span class="st">&quot;Ram&quot;</span><span class="kw">]</span></span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a><span class="kw">=&gt;</span> <span class="kw">[</span><span class="st">&quot;Budha&quot;</span>, <span class="st">&quot;Karthik&quot;</span>, <span class="st">&quot;Ragu&quot;</span>, <span class="st">&quot;Ram&quot;</span><span class="kw">]</span></span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a><span class="kw">&gt;&gt;</span> volleyball <span class="kw">&amp;</span> cricket</span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a><span class="kw">=&gt;</span> <span class="kw">[</span><span class="st">&quot;Karthik&quot;</span>, <span class="st">&quot;Budha&quot;</span><span class="kw">]</span></span></code></pre></div>
+<p>Or <code>+</code> to merge them:</p>
+<div class="sourceCode" id="cb32"><pre class="sourceCode ruby"><code class="sourceCode ruby"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&gt;&gt;</span> volleyball <span class="kw">+</span> cricket</span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="kw">=&gt;</span> <span class="kw">[</span><span class="st">&quot;Ashok&quot;</span>, <span class="st">&quot;Chavan&quot;</span>, <span class="st">&quot;Karthik&quot;</span>, <span class="st">&quot;Jesus&quot;</span>, <span class="st">&quot;Budha&quot;</span>, <span class="st">&quot;Budha&quot;</span>, <span class="st">&quot;Karthik&quot;</span>, <span class="st">&quot;Ragu&quot;</span>, <span class="st">&quot;Ram&quot;</span><span class="kw">]</span></span></code></pre></div>
+<p>Or use <code>|</code> to merge both, but de-duplicating at the same time:</p>
+<div class="sourceCode" id="cb33"><pre class="sourceCode ruby"><code class="sourceCode ruby"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&gt;&gt;</span> volleyball <span class="kw">|</span> cricket</span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="kw">=&gt;</span> <span class="kw">[</span><span class="st">&quot;Ashok&quot;</span>, <span class="st">&quot;Chavan&quot;</span>, <span class="st">&quot;Karthik&quot;</span>, <span class="st">&quot;Jesus&quot;</span>, <span class="st">&quot;Budha&quot;</span>, <span class="st">&quot;Ragu&quot;</span>, <span class="st">&quot;Ram&quot;</span><span class="kw">]</span></span></code></pre></div>
+<p>Finally, we can also use <code>-</code> to remove multiple elements at once:</p>
+<div class="sourceCode" id="cb34"><pre class="sourceCode ruby"><code class="sourceCode ruby"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&gt;&gt;</span> volleyball <span class="kw">-</span> cricket</span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="kw">=&gt;</span> <span class="kw">[</span><span class="st">&quot;Ashok&quot;</span>, <span class="st">&quot;Chavan&quot;</span>, <span class="st">&quot;Jesus&quot;</span><span class="kw">]</span></span></code></pre></div>
+<p>For those who are familiar with MapReduce, Ruby provides all of it in the language. For example <code>map</code>:</p>
+<div class="sourceCode" id="cb35"><pre class="sourceCode ruby"><code class="sourceCode ruby"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&gt;&gt;</span> array <span class="kw">=</span> <span class="kw">[</span><span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span><span class="kw">]</span></span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="kw">=&gt;</span> <span class="kw">[</span><span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span><span class="kw">]</span></span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a><span class="kw">&gt;&gt;</span> array<span class="at">.map</span><span class="kw">{</span> <span class="kw">|</span>element<span class="kw">|</span> element <span class="kw">*</span> element <span class="kw">}</span></span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a><span class="kw">=&gt;</span> <span class="kw">[</span><span class="dv">1</span>, <span class="dv">4</span>, <span class="dv">9</span><span class="kw">]</span></span></code></pre></div>
+<p>Note that this doesn’t modify the array; we can use <code>map!</code> for that, which works for lots of Ruby methods:</p>
+<div class="sourceCode" id="cb36"><pre class="sourceCode ruby"><code class="sourceCode ruby"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&gt;&gt;</span> array<span class="at">.collect!</span><span class="kw">{</span> <span class="kw">|</span>element<span class="kw">|</span> element <span class="kw">*</span> element <span class="kw">}</span></span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="kw">=&gt;</span> <span class="kw">[</span><span class="dv">1</span>, <span class="dv">4</span>, <span class="dv">9</span><span class="kw">]</span></span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a><span class="kw">&gt;&gt;</span> array</span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a><span class="kw">=&gt;</span> <span class="kw">[</span><span class="dv">1</span>, <span class="dv">4</span>, <span class="dv">9</span><span class="kw">]</span></span></code></pre></div>
+<p>The <code>filter</code> method for example can be used in the same way (named <code>keep_if</code>, with the opposite <code>delete_if</code> also existing), and works like how you already know if from JS:</p>
+<div class="sourceCode" id="cb37"><pre class="sourceCode ruby"><code class="sourceCode ruby"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&gt;&gt;</span> array <span class="kw">=</span> <span class="kw">[</span><span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">7</span>, <span class="dv">8</span>, <span class="dv">9</span>, <span class="dv">10</span><span class="kw">]</span></span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="kw">=&gt;</span> <span class="kw">[</span><span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">7</span>, <span class="dv">8</span>, <span class="dv">9</span>, <span class="dv">10</span><span class="kw">]</span></span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a><span class="kw">&gt;&gt;</span> array<span class="at">.keep_if</span><span class="kw">{</span> <span class="kw">|</span>element<span class="kw">|</span> element <span class="kw">%</span> <span class="dv">2</span> <span class="kw">==</span> <span class="dv">0</span><span class="kw">}</span></span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a><span class="kw">=&gt;</span> <span class="kw">[</span><span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">6</span>, <span class="dv">8</span>, <span class="dv">10</span><span class="kw">]</span></span></code></pre></div>
 </section>
 </section>
 </body>
