@@ -932,3 +932,122 @@ class Sphere
   end
 end
 ```
+
+### Metaprogramming
+
+Ruby is a very flexible langauge, and as such it allows metaprogramming. For example, directly call a method using the `send` function by passing in the `speak` symbol:
+
+```ruby
+class Person
+  attr_accessor :name
+
+  def speak
+    "Hello I am #{@name}"
+  end
+end
+
+
+p = Person.new
+p.name = "Karthik"
+puts p.send(:speak)
+```
+
+This allows for very powerful, but dangerous things, such as calling arbitrary functions by passing in the method name as a string:
+
+```ruby
+class Student
+  attr_accessor :name, :math, :science, :other
+end
+
+s = Student.new
+s.name = "Zigor"
+s.math = 100
+s.science = 100
+s.other = 0
+```
+
+If we want to give a user access to any of the properties using `send`, we can get their input using `gets.chop`:
+
+```ruby
+print "Enter the subject who's mark you want to know: "
+subject = gets.chop
+puts "The mark in #{subject} is #{s.send(subject)}"
+```
+
+We can also catch a developer calling methods that don't exist at runtime and handle that usecase explicitly by implementing a `method_missing` method:
+
+```ruby
+class Something
+  def initialize
+    @name = "Jake"
+  end
+
+  def method_missing method, *args, &block
+    puts "Method: #{method} with args: #{args} does not exist"
+    block.call @name
+  end
+end
+
+s = Something.new
+s.call_method "boo", 5 do |x|
+    puts x
+end
+```
+
+As you can see, we're now able to call a method that doesn't exist, and provide the implementation ourselves:
+
+```ruby
+=> Method: call_method with args: ["boo", 5] does not exist
+=> Jake
+```
+
+Instead of passing in an implementation in the form of a block ourselves, we can also do other things, such as matching the incoming method name against a regular expression and then manually calling the method:
+
+```ruby
+class Person
+  attr_accessor :name, :age
+
+  def initialize name, age
+    @name, @age = name, age
+  end
+
+  def method_missing method_name
+    method_name.to_s.match(/get_(\w+)/)
+    send($1)
+  end
+end
+
+person = Person.new "Zigor", "67893"
+puts "#{person.get_name} is #{person.get_age} years old"
+
+=> Zigor is 67893 years old
+```
+
+It is also possible to use `define_method` to dynamically define a method at runtime:
+
+```ruby
+class Person
+  def initialize name, age
+    @name, @age = name, age
+  end
+end
+
+Person.define_method(:get_name) do
+  @name
+end
+
+person = Person.new "Zigor", "67893"
+
+>> person.get_name
+=> "Zigor"
+```
+
+We can also define class methods etc. using `define_singleton_method` or `class_eval` and `instance_eval` etc. to add arbitrary things such ass `attr_accessor`s to classes or even instances.
+
+## Practical Examples
+
+### dRuby
+
+### Sinatra
+
+## Questions
