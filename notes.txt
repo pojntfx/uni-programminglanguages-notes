@@ -974,6 +974,98 @@ Practical Examples
 
 dRuby
 
+While not recommended in modern applications (see professor Kriha’s
+“Distributed Systems” course), dRuby is an excellent example of an
+idiomatic Ruby way of creating servers and clients, specifically
+distributed objects. We can define a server like so:
+
+    require 'drb/drb'
+
+    URI = 'druby://localhost:8787'
+
+    class PersonServer
+      attr_accessor :name
+
+      def initialize(name)
+        @name = name
+      end
+
+      def local_time
+        Time.now
+      end
+    end
+
+    DRb.start_service URI, PersonServer.new('Sheepy')
+
+    puts "Listening on to URI #{URI}"
+
+    DRb.thread.join
+
+And interact with the objects on the server like so:
+
+    require 'drb/drb'
+
+    URI = 'druby://localhost:8787'
+
+    DRb.start_service
+
+    puts "Connecting to URI #{URI}"
+
+    person = DRbObject.new_with_uri URI
+
+    puts "#{person.name} #{person.local_time}"
+
+    person.name = 'Noir'
+
+    puts "#{person.name} #{person.local_time}"
+
+As we can see, with very little code we can get a lot of functionality.
+
 Sinatra
+
+Aside from Ruby on Rails, Sinatra is a very neat web framework. You can
+define a web server in just three lines of code:
+
+    require 'sinatra'
+
+    get '/' do
+      'Hello, world!'
+    end
+
+Handling POST requests and parsing data is also very simple:
+
+    before do
+      next unless request.post?
+
+      request.body.rewind
+      @request_payload = JSON.parse request.body.read
+    end
+
+    post '/' do
+      @request_payload['name']
+    end
+
+By using ERB, we can render templates very easily:
+
+    require 'sinatra'
+
+    get '/' do
+      @name = params['name']
+
+      erb :index
+    end
+
+    <!DOCTYPE html>
+    <html lang="en">
+      <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>ERB Learning</title>
+      </head>
+      <body>
+        <h1>Hello, <%= @name %>!</h1>
+      </body>
+    </html>
 
 Questions
