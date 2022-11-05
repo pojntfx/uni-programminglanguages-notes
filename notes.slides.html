@@ -845,9 +845,85 @@ Felicitas Pojtinger (fp036)
 </div>
 <div id="druby" class="slide section level2" number="4.1">
 <h1 number="4.1"><span class="header-section-number">4.1</span> dRuby</h1>
+<p>While not recommended in modern applications (see professor Kriha’s “Distributed Systems” course), dRuby is an excellent example of an idiomatic Ruby way of creating servers and clients, specifically distributed objects. We can define a server like so:</p>
+<div class="sourceCode" id="cb88"><pre class="sourceCode ruby"><code class="sourceCode ruby"><span id="cb88-1"><a href="#cb88-1" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span> <span class="vs">&#39;drb/drb&#39;</span></span>
+<span id="cb88-2"><a href="#cb88-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-3"><a href="#cb88-3" aria-hidden="true" tabindex="-1"></a><span class="cn">URI</span> <span class="kw">=</span> <span class="vs">&#39;druby://localhost:8787&#39;</span></span>
+<span id="cb88-4"><a href="#cb88-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-5"><a href="#cb88-5" aria-hidden="true" tabindex="-1"></a><span class="cf">class</span> <span class="dt">PersonServer</span></span>
+<span id="cb88-6"><a href="#cb88-6" aria-hidden="true" tabindex="-1"></a>  <span class="ot">attr_accessor</span> <span class="wa">:name</span></span>
+<span id="cb88-7"><a href="#cb88-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-8"><a href="#cb88-8" aria-hidden="true" tabindex="-1"></a>  <span class="cf">def</span> initialize(name)</span>
+<span id="cb88-9"><a href="#cb88-9" aria-hidden="true" tabindex="-1"></a>    <span class="ot">@name</span> <span class="kw">=</span> name</span>
+<span id="cb88-10"><a href="#cb88-10" aria-hidden="true" tabindex="-1"></a>  <span class="cf">end</span></span>
+<span id="cb88-11"><a href="#cb88-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-12"><a href="#cb88-12" aria-hidden="true" tabindex="-1"></a>  <span class="cf">def</span> local_time</span>
+<span id="cb88-13"><a href="#cb88-13" aria-hidden="true" tabindex="-1"></a>    <span class="dt">Time</span><span class="at">.now</span></span>
+<span id="cb88-14"><a href="#cb88-14" aria-hidden="true" tabindex="-1"></a>  <span class="cf">end</span></span>
+<span id="cb88-15"><a href="#cb88-15" aria-hidden="true" tabindex="-1"></a><span class="cf">end</span></span>
+<span id="cb88-16"><a href="#cb88-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-17"><a href="#cb88-17" aria-hidden="true" tabindex="-1"></a><span class="dt">DRb</span><span class="at">.start_service</span> <span class="cn">URI</span>, <span class="dt">PersonServer</span><span class="at">.new</span>(<span class="vs">&#39;Sheepy&#39;</span>)</span>
+<span id="cb88-18"><a href="#cb88-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-19"><a href="#cb88-19" aria-hidden="true" tabindex="-1"></a><span class="fu">puts</span> <span class="st">&quot;Listening on to URI </span><span class="sc">#{</span><span class="cn">URI</span><span class="sc">}</span><span class="st">&quot;</span></span>
+<span id="cb88-20"><a href="#cb88-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-21"><a href="#cb88-21" aria-hidden="true" tabindex="-1"></a><span class="dt">DRb</span><span class="at">.thread.join</span></span></code></pre></div>
+<p>And interact with the objects on the server like so:</p>
+<div class="sourceCode" id="cb89"><pre class="sourceCode ruby"><code class="sourceCode ruby"><span id="cb89-1"><a href="#cb89-1" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span> <span class="vs">&#39;drb/drb&#39;</span></span>
+<span id="cb89-2"><a href="#cb89-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb89-3"><a href="#cb89-3" aria-hidden="true" tabindex="-1"></a><span class="cn">URI</span> <span class="kw">=</span> <span class="vs">&#39;druby://localhost:8787&#39;</span></span>
+<span id="cb89-4"><a href="#cb89-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb89-5"><a href="#cb89-5" aria-hidden="true" tabindex="-1"></a><span class="dt">DRb</span><span class="at">.start_service</span></span>
+<span id="cb89-6"><a href="#cb89-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb89-7"><a href="#cb89-7" aria-hidden="true" tabindex="-1"></a><span class="fu">puts</span> <span class="st">&quot;Connecting to URI </span><span class="sc">#{</span><span class="cn">URI</span><span class="sc">}</span><span class="st">&quot;</span></span>
+<span id="cb89-8"><a href="#cb89-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb89-9"><a href="#cb89-9" aria-hidden="true" tabindex="-1"></a>person <span class="kw">=</span> <span class="dt">DRbObject</span><span class="at">.new_with_uri</span> <span class="cn">URI</span></span>
+<span id="cb89-10"><a href="#cb89-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb89-11"><a href="#cb89-11" aria-hidden="true" tabindex="-1"></a><span class="fu">puts</span> <span class="st">&quot;</span><span class="sc">#{</span>person<span class="at">.name</span><span class="sc">}</span><span class="st"> </span><span class="sc">#{</span>person<span class="at">.local_time</span><span class="sc">}</span><span class="st">&quot;</span></span>
+<span id="cb89-12"><a href="#cb89-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb89-13"><a href="#cb89-13" aria-hidden="true" tabindex="-1"></a>person<span class="at">.name</span> <span class="kw">=</span> <span class="vs">&#39;Noir&#39;</span></span>
+<span id="cb89-14"><a href="#cb89-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb89-15"><a href="#cb89-15" aria-hidden="true" tabindex="-1"></a><span class="fu">puts</span> <span class="st">&quot;</span><span class="sc">#{</span>person<span class="at">.name</span><span class="sc">}</span><span class="st"> </span><span class="sc">#{</span>person<span class="at">.local_time</span><span class="sc">}</span><span class="st">&quot;</span></span></code></pre></div>
+<p>As we can see, with very little code we can get a lot of functionality.</p>
 </div>
 <div id="sinatra" class="slide section level2" number="4.2">
 <h1 number="4.2"><span class="header-section-number">4.2</span> Sinatra</h1>
+<p>Aside from Ruby on Rails, Sinatra is a very neat web framework. You can define a web server in just three lines of code:</p>
+<div class="sourceCode" id="cb90"><pre class="sourceCode ruby"><code class="sourceCode ruby"><span id="cb90-1"><a href="#cb90-1" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span> <span class="vs">&#39;sinatra&#39;</span></span>
+<span id="cb90-2"><a href="#cb90-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb90-3"><a href="#cb90-3" aria-hidden="true" tabindex="-1"></a>get <span class="ch">&#39;/&#39;</span> <span class="cf">do</span></span>
+<span id="cb90-4"><a href="#cb90-4" aria-hidden="true" tabindex="-1"></a>  <span class="vs">&#39;Hello, world!&#39;</span></span>
+<span id="cb90-5"><a href="#cb90-5" aria-hidden="true" tabindex="-1"></a><span class="cf">end</span></span></code></pre></div>
+<p>Handling POST requests and parsing data is also very simple:</p>
+<div class="sourceCode" id="cb91"><pre class="sourceCode ruby"><code class="sourceCode ruby"><span id="cb91-1"><a href="#cb91-1" aria-hidden="true" tabindex="-1"></a>before <span class="cf">do</span></span>
+<span id="cb91-2"><a href="#cb91-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">next</span> <span class="cf">unless</span> request<span class="at">.post?</span></span>
+<span id="cb91-3"><a href="#cb91-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb91-4"><a href="#cb91-4" aria-hidden="true" tabindex="-1"></a>  request<span class="at">.body.rewind</span></span>
+<span id="cb91-5"><a href="#cb91-5" aria-hidden="true" tabindex="-1"></a>  <span class="ot">@request_payload</span> <span class="kw">=</span> <span class="cn">JSON</span><span class="at">.parse</span> request<span class="at">.body.read</span></span>
+<span id="cb91-6"><a href="#cb91-6" aria-hidden="true" tabindex="-1"></a><span class="cf">end</span></span>
+<span id="cb91-7"><a href="#cb91-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb91-8"><a href="#cb91-8" aria-hidden="true" tabindex="-1"></a>post <span class="ch">&#39;/&#39;</span> <span class="cf">do</span></span>
+<span id="cb91-9"><a href="#cb91-9" aria-hidden="true" tabindex="-1"></a>  <span class="ot">@request_payload</span><span class="kw">[</span><span class="vs">&#39;name&#39;</span><span class="kw">]</span></span>
+<span id="cb91-10"><a href="#cb91-10" aria-hidden="true" tabindex="-1"></a><span class="cf">end</span></span></code></pre></div>
+<p>By using ERB, we can render templates very easily:</p>
+<div class="sourceCode" id="cb92"><pre class="sourceCode ruby"><code class="sourceCode ruby"><span id="cb92-1"><a href="#cb92-1" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span> <span class="vs">&#39;sinatra&#39;</span></span>
+<span id="cb92-2"><a href="#cb92-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb92-3"><a href="#cb92-3" aria-hidden="true" tabindex="-1"></a>get <span class="ch">&#39;/&#39;</span> <span class="cf">do</span></span>
+<span id="cb92-4"><a href="#cb92-4" aria-hidden="true" tabindex="-1"></a>  <span class="ot">@name</span> <span class="kw">=</span> params<span class="kw">[</span><span class="vs">&#39;name&#39;</span><span class="kw">]</span></span>
+<span id="cb92-5"><a href="#cb92-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb92-6"><a href="#cb92-6" aria-hidden="true" tabindex="-1"></a>  erb <span class="wa">:index</span></span>
+<span id="cb92-7"><a href="#cb92-7" aria-hidden="true" tabindex="-1"></a><span class="cf">end</span></span></code></pre></div>
+<div class="sourceCode" id="cb93"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb93-1"><a href="#cb93-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;!DOCTYPE </span>html<span class="dt">&gt;</span></span>
+<span id="cb93-2"><a href="#cb93-2" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;html</span><span class="ot"> lang=</span><span class="st">&quot;en&quot;</span><span class="kw">&gt;</span></span>
+<span id="cb93-3"><a href="#cb93-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;head&gt;</span></span>
+<span id="cb93-4"><a href="#cb93-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;meta</span><span class="ot"> charset=</span><span class="st">&quot;UTF-8&quot;</span> <span class="kw">/&gt;</span></span>
+<span id="cb93-5"><a href="#cb93-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;meta</span><span class="ot"> http-equiv=</span><span class="st">&quot;X-UA-Compatible&quot;</span><span class="ot"> content=</span><span class="st">&quot;IE=edge&quot;</span> <span class="kw">/&gt;</span></span>
+<span id="cb93-6"><a href="#cb93-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;meta</span><span class="ot"> name=</span><span class="st">&quot;viewport&quot;</span><span class="ot"> content=</span><span class="st">&quot;width=device-width, initial-scale=1.0&quot;</span> <span class="kw">/&gt;</span></span>
+<span id="cb93-7"><a href="#cb93-7" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;title&gt;</span>ERB Learning<span class="kw">&lt;/title&gt;</span></span>
+<span id="cb93-8"><a href="#cb93-8" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;/head&gt;</span></span>
+<span id="cb93-9"><a href="#cb93-9" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;body&gt;</span></span>
+<span id="cb93-10"><a href="#cb93-10" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;h1&gt;</span>Hello, <span class="er">&lt;</span>%= @name %&gt;!<span class="kw">&lt;/h1&gt;</span></span>
+<span id="cb93-11"><a href="#cb93-11" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;/body&gt;</span></span>
+<span id="cb93-12"><a href="#cb93-12" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/html&gt;</span></span></code></pre></div>
 </div>
 
 <div id="questions" class="title-slide slide section level1" number="5">

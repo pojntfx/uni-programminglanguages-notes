@@ -1,3 +1,9 @@
+commit faaaa74969c200d2f2debe32aa9474949219ebdf
+Author: Felicitas Pojtinger <felicitas@pojtinger.com>
+Date:   Sun Nov 6 00:41:55 2022 +0100
+
+    feat: Add simple practical examples
+
 commit 4d80053ff9c12aaeb426d98ee66f619d5c57d65c
 Author: Felicitas Pojtinger <felicitas@pojtinger.com>
 Date:   Sun Nov 6 00:35:43 2022 +0100
