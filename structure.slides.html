@@ -8,7 +8,7 @@
   <meta name="author" content="Felicitas Pojtinger (fp036)" />
   <meta name="date" content="2022-10-24" />
   <meta name="keywords" content="hdm-stuttgart, programming-languages" />
-  <title>Uni Programming Languages Notes</title>
+  <title>Uni Programming Languages Notes (Structure)</title>
   <style type="text/css">
     code{white-space: pre-wrap;}
     span.smallcaps{font-variant: small-caps;}
@@ -22,7 +22,7 @@
 </head>
 <body>
 <div class="slide titlepage">
-  <h1 class="title">Uni Programming Languages Notes</h1>
+  <h1 class="title">Uni Programming Languages Notes (Structure)</h1>
   <p class="author">
 Felicitas Pojtinger (fp036)
   </p>
@@ -35,21 +35,12 @@ Felicitas Pojtinger (fp036)
 <li><a href="#contributing"><span class="toc-section-number">1.1</span> Contributing</a></li>
 <li><a href="#license"><span class="toc-section-number">1.2</span> License</a></li>
 </ul></li>
-<li><a href="#overview"><span class="toc-section-number">2</span> Overview</a>
-<ul>
-<li><a href="#general-design"><span class="toc-section-number">2.1</span> General Design</a></li>
-<li><a href="#implementation-details"><span class="toc-section-number">2.2</span> Implementation Details</a></li>
-<li><a href="#users"><span class="toc-section-number">2.3</span> Users</a></li>
-<li><a href="#timeline"><span class="toc-section-number">2.4</span> Timeline</a></li>
-</ul></li>
+<li><a href="#structure"><span class="toc-section-number">2</span> Structure</a></li>
 </ul>
 </div>
-<div id="introduction" class="title-slide slide section level1" number="1">
+<div id="introduction" class="slide section level1" number="1">
 <h1 number="1"><span class="header-section-number">1</span> Introduction</h1>
-
-</div>
-<div id="contributing" class="slide section level2" number="1.1">
-<h1 number="1.1"><span class="header-section-number">1.1</span> Contributing</h1>
+<h2 number="1.1" id="contributing"><span class="header-section-number">1.1</span> Contributing</h2>
 <p>These study materials are heavily based on <a href="https://www.hdm-stuttgart.de/studierende/abteilungen/sprachenzentrum/kursangebot/kursangebot/block?sgname=Medieninformatik+%28Bachelor%2C+7+Semester%29&amp;sgblockID=2573358&amp;blockname=Aktuelle+Programmiersprachen&amp;sgang=550033">professor Ihler’s “Aktuelle Programmiersprachen” lecture at HdM Stuttgart</a>.</p>
 <p><strong>Found an error or have a suggestion?</strong> Please open an issue on GitHub (<a href="https://github.com/pojntfx/uni-programminglanguages-notes">github.com/pojntfx/uni-programminglanguages-notes</a>):</p>
 <div class="figure">
@@ -57,9 +48,7 @@ Felicitas Pojtinger (fp036)
 <p class="caption">QR code to source repository</p>
 </div>
 <p>If you like the study materials, a GitHub star is always appreciated :)</p>
-</div>
-<div id="license" class="slide section level2" number="1.2">
-<h1 number="1.2"><span class="header-section-number">1.2</span> License</h1>
+<h2 number="1.2" id="license"><span class="header-section-number">1.2</span> License</h2>
 <div class="figure">
 <img src="data:image/png;base64,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" width="128" alt />
 <p class="caption">AGPL-3.0 license badge</p>
@@ -67,58 +56,18 @@ Felicitas Pojtinger (fp036)
 <p>Uni Programming Languages Notes (c) 2021 Felicitas Pojtinger and contributors</p>
 <p>SPDX-License-Identifier: AGPL-3.0 </p>
 </div>
-
-<div id="overview" class="title-slide slide section level1" number="2">
-<h1 number="2"><span class="header-section-number">2</span> Overview</h1>
-
-</div>
-<div id="general-design" class="slide section level2" number="2.1">
-<h1 number="2.1"><span class="header-section-number">2.1</span> General Design</h1>
+<div id="structure" class="slide section level1" number="2">
+<h1 number="2"><span class="header-section-number">2</span> Structure</h1>
 <ul>
-<li>“A dynamic, open source programming language with a focus on simplicity and productivity. It has an elegant syntax that is natural to read and easy to write.”</li>
-<li>Inspired by Perl, Smalltalk, Eiffel, Ada, Lips</li>
-<li>Multi-paradigm from the beginning: Functional, imperative and object-oriented</li>
-<li>Radical object orientation: Everything is an object, there are no primitive types like in Java (<code>5.times { print &quot;We *love* Ruby -- it&#39;s outrageous!&quot; }</code>)</li>
-<li>Very flexible, i.e. operators can be redefined</li>
-<li>Built-in blocks (closures) from the start, excellent mapreduce capabilities</li>
-<li>Prefers mixins over inheritance</li>
-<li>Syntax uses limited punctuation with some notable exceptions (instance variables with <code>@</code>, globals with <code>$</code> etc.)</li>
-</ul>
-</div>
-<div id="implementation-details" class="slide section level2" number="2.2">
-<h1 number="2.2"><span class="header-section-number">2.2</span> Implementation Details</h1>
-<ul>
-<li>Exception handling similar to Java &amp; Python, but no checked exceptions</li>
-<li>Garbage collection without reference counts</li>
-<li>Simple C/C++ extension interface</li>
-<li>OS independent threading &amp; Fibers, even if OS is single-threaded (like MS-DOS)</li>
-<li>Cross-platform: Linux, macOS, Windows, FreeBSD etc.</li>
-<li>Many implementation (MRI/CRuby, JRuby for Ruby in the JVM, TruffleRuby on GraalVM, mruby for embedded uses, Artichoke for WebAssembly and Rust)</li>
-</ul>
-</div>
-<div id="users" class="slide section level2" number="2.3">
-<h1 number="2.3"><span class="header-section-number">2.3</span> Users</h1>
-<ul>
-<li>Twitter</li>
-<li>Mastodon</li>
-<li>GitHub</li>
-<li>Airbnb</li>
-<li>Shopify</li>
-<li>Twitch</li>
-<li>Stripe</li>
-<li>Etsy</li>
-<li>Soundcloud</li>
-<li>Basecamp</li>
-<li>Kickstarter</li>
-</ul>
-</div>
-<div id="timeline" class="slide section level2" number="2.4">
-<h1 number="2.4"><span class="header-section-number">2.4</span> Timeline</h1>
-<ul>
-<li>First concepts and prototypes ~1993</li>
-<li>First release ~1995, became most popular language in Japan by 2000</li>
-<li>Subsequent evolution and growth outside Japan</li>
-<li>Ruby 3.0 released ~2020, introducing a type system for static analysis, fibers (similar to Goroutines, asyncio etc.), and completing optimizations making it ~3x faster than Ruby 2.0 (from 2013)</li>
+<li>Introduction</li>
+<li>Timeline and future</li>
+<li>Syntax</li>
+<li>Type system</li>
+<li>Unique features (regex matching, DSLs, runtime extensions, metaprogramming etc.)</li>
+<li>Package manager</li>
+<li>Interpreters</li>
+<li>Frameworks</li>
+<li>Popular users</li>
 </ul>
 </div>
 </body>
