@@ -195,6 +195,18 @@ else
 end
 ```
 
+We can also assign values from a case statement:
+
+```ruby
+grade = case mark
+        when 80..100  : 'A'
+        when 60..79   : 'B'
+        when 40..59   : 'C'
+        when 0..39    : 'D'
+        else "Unable to determine grade. Try again."
+end
+```
+
 ### Loops
 
 Ruby does not have traditional for loops, but multiple, more general constructs that allow for the usecases.
@@ -401,4 +413,243 @@ The `filter` method for example can be used in the same way (named `keep_if`, wi
 => [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 >> array.keep_if{ |element| element % 2 == 0}
 => [2, 4, 6, 8, 10]
+```
+
+### Hashes
+
+Hashes can be used to store mapped information:
+
+```ruby
+mark = {}
+mark['English'] = 50
+mark['Math'] = 70
+mark['Science'] = 75
+```
+
+And we can define a default value:
+
+```ruby
+mark = {}
+mark.default = 0
+mark['English'] = 50
+mark['Math'] = 70
+mark['Science'] = 75
+```
+
+The hash literal `{}` also allows us to create hashes with pre-filled information:
+
+```ruby
+marks = { 'English' => 50, 'Math' => 70, 'Science' => 75 }
+```
+
+To loop over hashes, we can use the `each` method again:
+
+```ruby
+total = 0
+mark.each { |key,value|
+  total += value
+}
+puts "Total marks = "+total.to_s
+```
+
+A very interesting feature to use in combination with hashes are symbols; they are much more efficient than strings as they are global and thus use less memory:
+
+```ruby
+mark = {}
+mark[:English] = 50
+mark[:Math] = 70
+mark[:Science] = 75
+```
+
+We can check this by getting their `object_id` (a kind of pointer):
+
+```ruby
+c = "able was i ere i saw elba"
+d = "able was i ere i saw elba"
+>> c.object_id
+=> 21472860
+>> .object_id
+=> 1441620
+```
+
+```ruby
+e = :some_symbol
+f = :some_symbol
+>> e.object_id
+=> 1097628
+>> f.object_id
+=> 1097628
+```
+
+Just like accessing hash values is similar for arrays and hashes, we can use the same MapReduce functions on hashes:
+
+```ruby
+>> hash = {a: 1, b: 2, c: 3}
+=> {:a=>1, :b=>2, :c=>3}
+>> hash.transform_values{ |value| value * value }
+=> {:a=>1, :b=>4, :c=>9}
+```
+
+### Ranges
+
+Ranges are a cool concept in Ruby that we've used before. We can use them with the `..` notation:
+
+```ruby
+>> (1..5).each {|a| print "#{a}, " }
+=> 1, 2, 3, 4, 5, => 1..5
+```
+
+We can also use them on strings:
+
+```ruby
+>> ("bad".."bag").each {|a| print "#{a}, " }
+=> bad, bae, baf, bag, => "bad".."bag"
+```
+
+They can be very useful in `case` statements, where you can replace lots of `or` operators with them:
+
+```ruby
+grade = case mark
+  when 80..100
+    'A'
+  when 60..79
+    'B'
+  when 40..59
+    'C'
+  when 0..39
+    'D'
+  else
+    "Unable to determine grade. Try again."
+end
+```
+
+In addition to using them in `case` statements as described before, they can also serve as conditions:
+
+```ruby
+print "Enter any letter: "
+letter = gets.chop
+
+puts "You have entered a lower case letter" if  ('a'..'z') === letter
+puts "You have entered a upper case letter" if  ('A'..'Z') === letter
+```
+
+We can also use triple dots, which will remove the last value:
+
+```ruby
+>> (1..5).to_a
+=> [1, 2, 3, 4, 5]
+>> (1...5).to_a
+=> [1, 2, 3, 4]
+```
+
+It is also possible to define endless ranges:
+
+```ruby
+print "Enter your age: "
+age = gets.to_i
+
+case age
+when 0..18
+  puts "You are a kid"
+when (19..)
+  puts "You are grownup"
+end
+```
+
+### Functions
+
+As mentioned before, Ruby draws a lot of inspiration from functional programming languages, and functions are a primary building block in the language as a result.
+
+We can define functions with `def` and call them without parentheses:
+
+```ruby
+def print_line
+  puts '_' * 20
+end
+
+print_line
+```
+
+It is also possible to define default arguments unlike in Java:
+
+```ruby
+def print_line length = 20
+  puts '_'*length
+end
+
+print_line
+print_line 40
+```
+
+Arguments are always passed by reference:
+
+```ruby
+def array_changer array
+  array << 6
+end
+
+some_array = [1, 2, 3, 4, 5]
+p some_array
+array_changer some_array
+p some_array
+
+=> [1, 2, 3, 4, 5]
+=> [1, 2, 3, 4, 5, 6]
+```
+
+There is no need for a `return` statements as returns are implicit (but optional for control flow support):
+
+```ruby
+def addition x, y
+  x + y
+end
+
+addition 3, 5
+
+=> 8
+```
+
+We can also define named arguments, with or without defaults:
+
+```ruby
+def say_hello name: "Martin", age: 33
+  puts "Hello #{name} your age is #{age}"
+end
+
+say_hello name: "Joseph", age: 7
+```
+
+Arguments can also be variadic:
+
+```ruby
+def some_function a, *others
+  puts a
+  others.each do |x|
+    puts x
+  end
+end
+
+some_function 1,2,3,4,5
+```
+
+A very neat function is to use argument forwarding to call a function with all used parameters:
+
+```ruby
+def print_something string
+  puts string
+end
+
+def decorate(...)
+  puts "#" * 50
+  print_something(...)
+  puts "#" * 50
+end
+
+decorate "Hello World!"
+```
+
+We can also define a function in more consise way:
+
+```ruby
+def double(num) = num * 2
 ```
