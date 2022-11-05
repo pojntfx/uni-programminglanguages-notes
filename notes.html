@@ -241,6 +241,8 @@
 <li><a href="#hashes"><span class="toc-section-number">1.3.4</span> Hashes</a></li>
 <li><a href="#ranges"><span class="toc-section-number">1.3.5</span> Ranges</a></li>
 <li><a href="#functions"><span class="toc-section-number">1.3.6</span> Functions</a></li>
+<li><a href="#classes"><span class="toc-section-number">1.3.7</span> Classes</a></li>
+<li><a href="#files-modules-and-mixins"><span class="toc-section-number">1.3.8</span> Files, Modules and Mixins</a></li>
 </ul></li>
 </ul>
 </nav>
@@ -667,6 +669,204 @@
 <span id="cb59-11"><a href="#cb59-11" aria-hidden="true" tabindex="-1"></a>decorate <span class="st">&quot;Hello World!&quot;</span></span></code></pre></div>
 <p>We can also define a function in more consise way:</p>
 <div class="sourceCode" id="cb60"><pre class="sourceCode ruby"><code class="sourceCode ruby"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="cf">def</span> double(num) <span class="kw">=</span> num <span class="kw">*</span> <span class="dv">2</span></span></code></pre></div>
+</section>
+<section id="classes" data-number="0.3.7">
+<h3 data-number="1.3.7"><span class="header-section-number">1.3.7</span> Classes</h3>
+<p>Besides the functional influence, Ruby is also a radically object-oriented language. As a result, it makes working with objects and classes very easy:</p>
+<div class="sourceCode" id="cb61"><pre class="sourceCode ruby"><code class="sourceCode ruby"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a><span class="cf">class</span> <span class="dt">Square</span></span>
+<span id="cb61-2"><a href="#cb61-2" aria-hidden="true" tabindex="-1"></a><span class="cf">end</span></span></code></pre></div>
+<p>Through the <code>attr_reader</code>, <code>attr_writer</code> and <code>attr_accessor</code> notation we can add instance variables to a class:</p>
+<div class="sourceCode" id="cb62"><pre class="sourceCode ruby"><code class="sourceCode ruby"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="cf">class</span> <span class="dt">Square</span></span>
+<span id="cb62-2"><a href="#cb62-2" aria-hidden="true" tabindex="-1"></a>  <span class="ot">attr_accessor</span> <span class="wa">:side_length</span></span>
+<span id="cb62-3"><a href="#cb62-3" aria-hidden="true" tabindex="-1"></a><span class="cf">end</span></span></code></pre></div>
+<p>They can be read and written with <code>.</code>:</p>
+<div class="sourceCode" id="cb63"><pre class="sourceCode ruby"><code class="sourceCode ruby"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a>s1 <span class="kw">=</span> <span class="dt">Square</span><span class="at">.new</span> <span class="co"># creates a new square</span></span>
+<span id="cb63-2"><a href="#cb63-2" aria-hidden="true" tabindex="-1"></a>s1<span class="at">.side_length</span> <span class="kw">=</span> <span class="dv">5</span> <span class="co"># sets its side length</span></span>
+<span id="cb63-3"><a href="#cb63-3" aria-hidden="true" tabindex="-1"></a><span class="fu">puts</span> <span class="st">&quot;Side length of s1 = </span><span class="sc">#{</span>s1<span class="at">.side_length</span><span class="sc">}</span><span class="st">&quot;</span> <span class="co"># prints the side length</span></span></code></pre></div>
+<p>Methods can be defined with <code>def</code>:</p>
+<div class="sourceCode" id="cb64"><pre class="sourceCode ruby"><code class="sourceCode ruby"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="cf">class</span> <span class="dt">Square</span></span>
+<span id="cb64-2"><a href="#cb64-2" aria-hidden="true" tabindex="-1"></a>  <span class="ot">attr_accessor</span> <span class="wa">:side_length</span></span>
+<span id="cb64-3"><a href="#cb64-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-4"><a href="#cb64-4" aria-hidden="true" tabindex="-1"></a>  <span class="cf">def</span> area</span>
+<span id="cb64-5"><a href="#cb64-5" aria-hidden="true" tabindex="-1"></a>    <span class="ot">@side_length</span> <span class="kw">*</span> <span class="ot">@side_length</span></span>
+<span id="cb64-6"><a href="#cb64-6" aria-hidden="true" tabindex="-1"></a>  <span class="cf">end</span></span>
+<span id="cb64-7"><a href="#cb64-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-8"><a href="#cb64-8" aria-hidden="true" tabindex="-1"></a>  <span class="cf">def</span> perimeter</span>
+<span id="cb64-9"><a href="#cb64-9" aria-hidden="true" tabindex="-1"></a>    <span class="dv">4</span> <span class="kw">*</span> <span class="ot">@side_length</span></span>
+<span id="cb64-10"><a href="#cb64-10" aria-hidden="true" tabindex="-1"></a>  <span class="cf">end</span></span>
+<span id="cb64-11"><a href="#cb64-11" aria-hidden="true" tabindex="-1"></a><span class="cf">end</span></span></code></pre></div>
+<p>Note the use of <code>@</code> to access instance variables.</p>
+<p>Like many object-oriented languages, Ruby supports constructors (called initializers):</p>
+<div class="sourceCode" id="cb65"><pre class="sourceCode ruby"><code class="sourceCode ruby"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a><span class="cf">class</span> <span class="dt">Square</span></span>
+<span id="cb65-2"><a href="#cb65-2" aria-hidden="true" tabindex="-1"></a>  <span class="ot">attr_accessor</span> <span class="wa">:side_length</span></span>
+<span id="cb65-3"><a href="#cb65-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb65-4"><a href="#cb65-4" aria-hidden="true" tabindex="-1"></a>  <span class="cf">def</span> initialize side_length <span class="kw">=</span> <span class="dv">0</span></span>
+<span id="cb65-5"><a href="#cb65-5" aria-hidden="true" tabindex="-1"></a>    <span class="ot">@side_length</span> <span class="kw">=</span> side_length</span>
+<span id="cb65-6"><a href="#cb65-6" aria-hidden="true" tabindex="-1"></a>  <span class="cf">end</span></span>
+<span id="cb65-7"><a href="#cb65-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb65-8"><a href="#cb65-8" aria-hidden="true" tabindex="-1"></a>  <span class="cf">def</span> area</span>
+<span id="cb65-9"><a href="#cb65-9" aria-hidden="true" tabindex="-1"></a>    <span class="ot">@side_length</span> <span class="kw">*</span> <span class="ot">@side_length</span></span>
+<span id="cb65-10"><a href="#cb65-10" aria-hidden="true" tabindex="-1"></a>  <span class="cf">end</span></span>
+<span id="cb65-11"><a href="#cb65-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb65-12"><a href="#cb65-12" aria-hidden="true" tabindex="-1"></a>  <span class="cf">def</span> perimeter</span>
+<span id="cb65-13"><a href="#cb65-13" aria-hidden="true" tabindex="-1"></a>    <span class="dv">4</span> <span class="kw">*</span> <span class="ot">@side_length</span></span>
+<span id="cb65-14"><a href="#cb65-14" aria-hidden="true" tabindex="-1"></a>  <span class="cf">end</span></span>
+<span id="cb65-15"><a href="#cb65-15" aria-hidden="true" tabindex="-1"></a><span class="cf">end</span></span></code></pre></div>
+<p>Variables defined by <code>attr_accessor</code> as public; we can make them private by ommiting their definition:</p>
+<div class="sourceCode" id="cb66"><pre class="sourceCode ruby"><code class="sourceCode ruby"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a><span class="cf">class</span> <span class="dt">Human</span></span>
+<span id="cb66-2"><a href="#cb66-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">def</span> set_name name</span>
+<span id="cb66-3"><a href="#cb66-3" aria-hidden="true" tabindex="-1"></a>    <span class="ot">@name</span> <span class="kw">=</span> name</span>
+<span id="cb66-4"><a href="#cb66-4" aria-hidden="true" tabindex="-1"></a>  <span class="cf">end</span></span>
+<span id="cb66-5"><a href="#cb66-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb66-6"><a href="#cb66-6" aria-hidden="true" tabindex="-1"></a>  <span class="cf">def</span> get_name</span>
+<span id="cb66-7"><a href="#cb66-7" aria-hidden="true" tabindex="-1"></a>    <span class="ot">@name</span></span>
+<span id="cb66-8"><a href="#cb66-8" aria-hidden="true" tabindex="-1"></a>  <span class="cf">end</span></span>
+<span id="cb66-9"><a href="#cb66-9" aria-hidden="true" tabindex="-1"></a><span class="cf">end</span></span></code></pre></div>
+<p>In a similar way, we can use <code>private</code> and <code>protected</code> to change the visibility of methods:</p>
+<div class="sourceCode" id="cb67"><pre class="sourceCode ruby"><code class="sourceCode ruby"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a><span class="cf">class</span> <span class="dt">Human</span></span>
+<span id="cb67-2"><a href="#cb67-2" aria-hidden="true" tabindex="-1"></a>  <span class="ot">attr_accessor</span> <span class="wa">:name</span>, <span class="wa">:age</span></span>
+<span id="cb67-3"><a href="#cb67-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb67-4"><a href="#cb67-4" aria-hidden="true" tabindex="-1"></a>  <span class="cf">def</span> tell_about_you</span>
+<span id="cb67-5"><a href="#cb67-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">puts</span> <span class="st">&quot;Hello I am </span><span class="sc">#{</span><span class="ot">@name</span><span class="sc">}</span><span class="st">. I am </span><span class="sc">#{</span><span class="ot">@age</span><span class="sc">}</span><span class="st"> years old&quot;</span></span>
+<span id="cb67-6"><a href="#cb67-6" aria-hidden="true" tabindex="-1"></a>  <span class="cf">end</span></span>
+<span id="cb67-7"><a href="#cb67-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb67-8"><a href="#cb67-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">private</span> <span class="cf">def</span> tell_a_secret</span>
+<span id="cb67-9"><a href="#cb67-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">puts</span> <span class="st">&quot;I am not a human, I am a computer program. He! Hee!!&quot;</span></span>
+<span id="cb67-10"><a href="#cb67-10" aria-hidden="true" tabindex="-1"></a>  <span class="cf">end</span></span>
+<span id="cb67-11"><a href="#cb67-11" aria-hidden="true" tabindex="-1"></a><span class="cf">end</span></span></code></pre></div>
+<p>In addition to instance variables, we can also create class variables which work similar to static variables in Java using the <code>@@</code> notation:</p>
+<div class="sourceCode" id="cb68"><pre class="sourceCode ruby"><code class="sourceCode ruby"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a><span class="cf">class</span> <span class="dt">Robot</span></span>
+<span id="cb68-2"><a href="#cb68-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">def</span> initialize</span>
+<span id="cb68-3"><a href="#cb68-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="cf">defined?</span>(<span class="ot">@@robot_count</span>)</span>
+<span id="cb68-4"><a href="#cb68-4" aria-hidden="true" tabindex="-1"></a>      <span class="ot">@@robot_count</span> <span class="kw">+=</span> <span class="dv">1</span></span>
+<span id="cb68-5"><a href="#cb68-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span></span>
+<span id="cb68-6"><a href="#cb68-6" aria-hidden="true" tabindex="-1"></a>      <span class="ot">@@robot_count</span> <span class="kw">=</span> <span class="dv">1</span></span>
+<span id="cb68-7"><a href="#cb68-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
+<span id="cb68-8"><a href="#cb68-8" aria-hidden="true" tabindex="-1"></a>  <span class="cf">end</span></span>
+<span id="cb68-9"><a href="#cb68-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb68-10"><a href="#cb68-10" aria-hidden="true" tabindex="-1"></a>  <span class="cf">def</span> <span class="dv">self</span><span class="at">.robots_created</span></span>
+<span id="cb68-11"><a href="#cb68-11" aria-hidden="true" tabindex="-1"></a>    <span class="ot">@@robot_count</span></span>
+<span id="cb68-12"><a href="#cb68-12" aria-hidden="true" tabindex="-1"></a>  <span class="cf">end</span></span>
+<span id="cb68-13"><a href="#cb68-13" aria-hidden="true" tabindex="-1"></a><span class="cf">end</span></span></code></pre></div>
+<p>Similarly so, we can define class constants like so:</p>
+<div class="sourceCode" id="cb69"><pre class="sourceCode ruby"><code class="sourceCode ruby"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a><span class="cf">class</span> <span class="dt">Something</span></span>
+<span id="cb69-2"><a href="#cb69-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">Const</span> <span class="kw">=</span> <span class="dv">25</span></span>
+<span id="cb69-3"><a href="#cb69-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb69-4"><a href="#cb69-4" aria-hidden="true" tabindex="-1"></a>  <span class="cf">def</span> <span class="dt">Const</span></span>
+<span id="cb69-5"><a href="#cb69-5" aria-hidden="true" tabindex="-1"></a>    <span class="dt">Const</span></span>
+<span id="cb69-6"><a href="#cb69-6" aria-hidden="true" tabindex="-1"></a>  <span class="cf">end</span></span>
+<span id="cb69-7"><a href="#cb69-7" aria-hidden="true" tabindex="-1"></a><span class="cf">end</span></span>
+<span id="cb69-8"><a href="#cb69-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb69-9"><a href="#cb69-9" aria-hidden="true" tabindex="-1"></a><span class="fu">puts</span> <span class="dt">Something</span><span class="kw">::</span><span class="dt">Const</span></span></code></pre></div>
+<p>While inheritance is not the primary means of reusing code in Ruby, there is support for it in the language using the <code>&lt;</code> notation:</p>
+<div class="sourceCode" id="cb70"><pre class="sourceCode ruby"><code class="sourceCode ruby"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a><span class="cf">class</span> <span class="dt">Rectangle</span></span>
+<span id="cb70-2"><a href="#cb70-2" aria-hidden="true" tabindex="-1"></a>  <span class="ot">attr_accessor</span> <span class="wa">:length</span>, <span class="wa">:width</span></span>
+<span id="cb70-3"><a href="#cb70-3" aria-hidden="true" tabindex="-1"></a><span class="cf">end</span></span>
+<span id="cb70-4"><a href="#cb70-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb70-5"><a href="#cb70-5" aria-hidden="true" tabindex="-1"></a><span class="cf">class</span> <span class="dt">Square</span> <span class="kw">&lt;</span> <span class="dt">Rectangle</span></span>
+<span id="cb70-6"><a href="#cb70-6" aria-hidden="true" tabindex="-1"></a>  <span class="cf">def</span> initialize length</span>
+<span id="cb70-7"><a href="#cb70-7" aria-hidden="true" tabindex="-1"></a>    <span class="ot">@width</span> <span class="kw">=</span> <span class="ot">@length</span> <span class="kw">=</span> length</span>
+<span id="cb70-8"><a href="#cb70-8" aria-hidden="true" tabindex="-1"></a>  <span class="cf">end</span></span>
+<span id="cb70-9"><a href="#cb70-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb70-10"><a href="#cb70-10" aria-hidden="true" tabindex="-1"></a>  <span class="cf">def</span> side_length</span>
+<span id="cb70-11"><a href="#cb70-11" aria-hidden="true" tabindex="-1"></a>    <span class="ot">@width</span></span>
+<span id="cb70-12"><a href="#cb70-12" aria-hidden="true" tabindex="-1"></a>  <span class="cf">end</span></span>
+<span id="cb70-13"><a href="#cb70-13" aria-hidden="true" tabindex="-1"></a><span class="cf">end</span></span></code></pre></div>
+<p>We can overwrite methods; interestingly it is possible to change a child’s signature and use the <code>super</code> method in the child:</p>
+<div class="sourceCode" id="cb71"><pre class="sourceCode ruby"><code class="sourceCode ruby"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a><span class="cf">class</span> <span class="dt">Square</span> <span class="kw">&lt;</span> <span class="dt">Rectangle</span></span>
+<span id="cb71-2"><a href="#cb71-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">def</span> set_dimension side_length</span>
+<span id="cb71-3"><a href="#cb71-3" aria-hidden="true" tabindex="-1"></a>    <span class="dv">super</span> side_length, side_length</span>
+<span id="cb71-4"><a href="#cb71-4" aria-hidden="true" tabindex="-1"></a>  <span class="cf">end</span></span>
+<span id="cb71-5"><a href="#cb71-5" aria-hidden="true" tabindex="-1"></a><span class="cf">end</span></span></code></pre></div>
+<p>I won’t go into more details on these aspects as they are mostly similar to Java; the same goes for Threads, Exception and more. One thing uniquely powerful in Ruby is reflection; for example, you can get the methods of a class as an array using <code>.methods</code>:</p>
+<div class="sourceCode" id="cb72"><pre class="sourceCode ruby"><code class="sourceCode ruby"><span id="cb72-1"><a href="#cb72-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&gt;&gt;</span> <span class="st">&quot;a&quot;</span><span class="at">.methods</span></span>
+<span id="cb72-2"><a href="#cb72-2" aria-hidden="true" tabindex="-1"></a><span class="kw">=&gt;</span></span>
+<span id="cb72-3"><a href="#cb72-3" aria-hidden="true" tabindex="-1"></a><span class="kw">[</span><span class="wa">:unicode_normalized?</span>,</span>
+<span id="cb72-4"><a href="#cb72-4" aria-hidden="true" tabindex="-1"></a> <span class="wa">:encode!</span>,</span>
+<span id="cb72-5"><a href="#cb72-5" aria-hidden="true" tabindex="-1"></a> <span class="wa">:unicode_normalize</span>,</span>
+<span id="cb72-6"><a href="#cb72-6" aria-hidden="true" tabindex="-1"></a> <span class="wa">:ascii_only?</span>,</span>
+<span id="cb72-7"><a href="#cb72-7" aria-hidden="true" tabindex="-1"></a> <span class="wa">:unicode_normalize!</span>,</span>
+<span id="cb72-8"><a href="#cb72-8" aria-hidden="true" tabindex="-1"></a> <span class="wa">:to_r</span>,</span>
+<span id="cb72-9"><a href="#cb72-9" aria-hidden="true" tabindex="-1"></a> <span class="wa">:encode</span>,</span>
+<span id="cb72-10"><a href="#cb72-10" aria-hidden="true" tabindex="-1"></a> <span class="wa">:to_c</span>,</span>
+<span id="cb72-11"><a href="#cb72-11" aria-hidden="true" tabindex="-1"></a> <span class="wa">:include?</span>,</span>
+<span id="cb72-12"><a href="#cb72-12" aria-hidden="true" tabindex="-1"></a> :<span class="ot">%,</span></span>
+<span id="cb72-13"><a href="#cb72-13" aria-hidden="true" tabindex="-1"></a><span class="st"> :*</span><span class="ot">,</span></span>
+<span id="cb72-14"><a href="#cb72-14" aria-hidden="true" tabindex="-1"></a> :<span class="kw">+</span>,</span>
+<span id="cb72-15"><a href="#cb72-15" aria-hidden="true" tabindex="-1"></a> <span class="wa">:unpack</span>,</span>
+<span id="cb72-16"><a href="#cb72-16" aria-hidden="true" tabindex="-1"></a> <span class="co"># ...</span></span>
+<span id="cb72-17"><a href="#cb72-17" aria-hidden="true" tabindex="-1"></a><span class="kw">]</span></span></code></pre></div>
+<p>We can also get private methods using <code>.private_methods</code>, instance variables using <code>.instance_variables</code> etc.</p>
+<p>Another feature fairly unique to Ruby is method aliasing:</p>
+<div class="sourceCode" id="cb73"><pre class="sourceCode ruby"><code class="sourceCode ruby"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true" tabindex="-1"></a><span class="cf">class</span> <span class="dt">Something</span></span>
+<span id="cb73-2"><a href="#cb73-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">def</span> make_noise</span>
+<span id="cb73-3"><a href="#cb73-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">puts</span> <span class="st">&quot;AAAAAAAAAAAAAAHHHHHHHHHHHHHH&quot;</span></span>
+<span id="cb73-4"><a href="#cb73-4" aria-hidden="true" tabindex="-1"></a>  <span class="cf">end</span></span>
+<span id="cb73-5"><a href="#cb73-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb73-6"><a href="#cb73-6" aria-hidden="true" tabindex="-1"></a>  <span class="kw">alias</span> <span class="wa">:shout</span> <span class="wa">:make_noise</span></span>
+<span id="cb73-7"><a href="#cb73-7" aria-hidden="true" tabindex="-1"></a><span class="cf">end</span></span>
+<span id="cb73-8"><a href="#cb73-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb73-9"><a href="#cb73-9" aria-hidden="true" tabindex="-1"></a><span class="dt">Something</span><span class="at">.new.shout</span></span></code></pre></div>
+<p>This makes it very easy to define multiple method names for things that are frequently interchanged, such as <code>.delete</code> and <code>.remove</code>, or <code>.filter</code> and <code>.keep_if</code>.</p>
+<p>Due to Ruby’s dynamic nature, we can also define classes dynamically and anonymously:</p>
+<div class="sourceCode" id="cb74"><pre class="sourceCode ruby"><code class="sourceCode ruby"><span id="cb74-1"><a href="#cb74-1" aria-hidden="true" tabindex="-1"></a>person <span class="kw">=</span> <span class="dt">Class</span><span class="at">.new</span> <span class="cf">do</span></span>
+<span id="cb74-2"><a href="#cb74-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">def</span> say_hi</span>
+<span id="cb74-3"><a href="#cb74-3" aria-hidden="true" tabindex="-1"></a>    <span class="vs">&#39;Hi&#39;</span></span>
+<span id="cb74-4"><a href="#cb74-4" aria-hidden="true" tabindex="-1"></a>  <span class="cf">end</span></span>
+<span id="cb74-5"><a href="#cb74-5" aria-hidden="true" tabindex="-1"></a><span class="cf">end</span><span class="at">.new</span></span></code></pre></div>
+<p>To deal with the complexities of such a dynamic language, Ruby has support for a safe navigation operator similar to Typescript:</p>
+<div class="sourceCode" id="cb75"><pre class="sourceCode ruby"><code class="sourceCode ruby"><span id="cb75-1"><a href="#cb75-1" aria-hidden="true" tabindex="-1"></a><span class="cf">class</span> <span class="dt">Robot</span></span>
+<span id="cb75-2"><a href="#cb75-2" aria-hidden="true" tabindex="-1"></a>  <span class="ot">attr_accessor</span> <span class="wa">:name</span></span>
+<span id="cb75-3"><a href="#cb75-3" aria-hidden="true" tabindex="-1"></a><span class="cf">end</span></span>
+<span id="cb75-4"><a href="#cb75-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb75-5"><a href="#cb75-5" aria-hidden="true" tabindex="-1"></a>robot <span class="kw">=</span> <span class="dt">Robot</span><span class="at">.new</span></span>
+<span id="cb75-6"><a href="#cb75-6" aria-hidden="true" tabindex="-1"></a>robot<span class="at">.name</span> <span class="kw">=</span> <span class="st">&quot;Zigor&quot;</span></span>
+<span id="cb75-7"><a href="#cb75-7" aria-hidden="true" tabindex="-1"></a><span class="fu">puts</span> <span class="st">&quot;The robots name is </span><span class="sc">#{</span>robot<span class="at">.name</span><span class="sc">}</span><span class="st">&quot;</span> <span class="cf">if</span> robot<span class="kw">&amp;</span><span class="at">.name</span></span></code></pre></div>
+</section>
+<section id="files-modules-and-mixins" data-number="0.3.8">
+<h3 data-number="1.3.8"><span class="header-section-number">1.3.8</span> Files, Modules and Mixins</h3>
+<p>We can use the <code>require</code> function to import things from files; this is very similar to how early NodeJS works:</p>
+<div class="sourceCode" id="cb76"><pre class="sourceCode ruby"><code class="sourceCode ruby"><span id="cb76-1"><a href="#cb76-1" aria-hidden="true" tabindex="-1"></a><span class="co"># break_square.rb</span></span>
+<span id="cb76-2"><a href="#cb76-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb76-3"><a href="#cb76-3" aria-hidden="true" tabindex="-1"></a><span class="cf">class</span> <span class="dt">Square</span></span>
+<span id="cb76-4"><a href="#cb76-4" aria-hidden="true" tabindex="-1"></a>  <span class="ot">attr_accessor</span> <span class="wa">:side_length</span></span>
+<span id="cb76-5"><a href="#cb76-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb76-6"><a href="#cb76-6" aria-hidden="true" tabindex="-1"></a>  <span class="cf">def</span> perimeter</span>
+<span id="cb76-7"><a href="#cb76-7" aria-hidden="true" tabindex="-1"></a>    <span class="ot">@side_length</span> <span class="kw">*</span> <span class="dv">4</span></span>
+<span id="cb76-8"><a href="#cb76-8" aria-hidden="true" tabindex="-1"></a>  <span class="cf">end</span></span>
+<span id="cb76-9"><a href="#cb76-9" aria-hidden="true" tabindex="-1"></a><span class="cf">end</span></span></code></pre></div>
+<div class="sourceCode" id="cb77"><pre class="sourceCode ruby"><code class="sourceCode ruby"><span id="cb77-1"><a href="#cb77-1" aria-hidden="true" tabindex="-1"></a><span class="co"># break_main.rb</span></span>
+<span id="cb77-2"><a href="#cb77-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb77-3"><a href="#cb77-3" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span> <span class="st">&quot;./break_square.rb&quot;</span></span>
+<span id="cb77-4"><a href="#cb77-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb77-5"><a href="#cb77-5" aria-hidden="true" tabindex="-1"></a>s <span class="kw">=</span> <span class="dt">Square</span><span class="at">.new</span></span>
+<span id="cb77-6"><a href="#cb77-6" aria-hidden="true" tabindex="-1"></a>s<span class="at">.side_length</span> <span class="kw">=</span> <span class="dv">5</span></span>
+<span id="cb77-7"><a href="#cb77-7" aria-hidden="true" tabindex="-1"></a><span class="fu">puts</span> <span class="st">&quot;The squares perimeter is </span><span class="sc">#{</span>s<span class="at">.perimeter</span><span class="sc">}</span><span class="st">&quot;</span></span></code></pre></div>
+<p>However this quickly leads to problems with code organization, for example when two functions with a different purpose are named the same way. Ruby solves this issue with modules:</p>
+<div class="sourceCode" id="cb78"><pre class="sourceCode ruby"><code class="sourceCode ruby"><span id="cb78-1"><a href="#cb78-1" aria-hidden="true" tabindex="-1"></a><span class="cf">module</span> <span class="dt">Star</span></span>
+<span id="cb78-2"><a href="#cb78-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">def</span> line</span>
+<span id="cb78-3"><a href="#cb78-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">puts</span> <span class="ch">&#39;*&#39;</span> <span class="kw">*</span> <span class="dv">20</span></span>
+<span id="cb78-4"><a href="#cb78-4" aria-hidden="true" tabindex="-1"></a>  <span class="cf">end</span></span>
+<span id="cb78-5"><a href="#cb78-5" aria-hidden="true" tabindex="-1"></a><span class="cf">end</span></span>
+<span id="cb78-6"><a href="#cb78-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb78-7"><a href="#cb78-7" aria-hidden="true" tabindex="-1"></a><span class="cf">module</span> <span class="dt">Dollar</span></span>
+<span id="cb78-8"><a href="#cb78-8" aria-hidden="true" tabindex="-1"></a>  <span class="cf">def</span> line</span>
+<span id="cb78-9"><a href="#cb78-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">puts</span> <span class="ch">&#39;$&#39;</span> <span class="kw">*</span> <span class="dv">20</span></span>
+<span id="cb78-10"><a href="#cb78-10" aria-hidden="true" tabindex="-1"></a>  <span class="cf">end</span></span>
+<span id="cb78-11"><a href="#cb78-11" aria-hidden="true" tabindex="-1"></a><span class="cf">end</span></span></code></pre></div>
+<p>If we <code>include Star</code> and call <code>line</code>, we will print a line of starts, and if we do so with <code>Dollar</code>, calling <code>line</code> again will print dollar signs. Without including <code>line</code>, the method will be undefined.</p>
+<p>We can also call methods and access other objects in a module using the <code>::</code> operator:</p>
+<div class="sourceCode" id="cb79"><pre class="sourceCode ruby"><code class="sourceCode ruby"><span id="cb79-1"><a href="#cb79-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&gt;&gt;</span> <span class="dt">Dollar</span><span class="kw">::</span><span class="at">line</span></span>
+<span id="cb79-2"><a href="#cb79-2" aria-hidden="true" tabindex="-1"></a><span class="kw">=&gt;</span> <span class="va">$$$$$$$$$$$$$$$$$$$$</span></span></code></pre></div>
+<p>The <code>include</code> keyword can be used to form Mixins, which will expose reusable code only to a specific class, i.e. make the <code>Pi</code> constant only accessible from a single class:</p>
+<div class="sourceCode" id="cb80"><pre class="sourceCode ruby"><code class="sourceCode ruby"><span id="cb80-1"><a href="#cb80-1" aria-hidden="true" tabindex="-1"></a><span class="cf">class</span> <span class="dt">Sphere</span></span>
+<span id="cb80-2"><a href="#cb80-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">include</span> <span class="dt">Constants</span></span>
+<span id="cb80-3"><a href="#cb80-3" aria-hidden="true" tabindex="-1"></a>  <span class="ot">attr_accessor</span> <span class="wa">:radius</span></span>
+<span id="cb80-4"><a href="#cb80-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb80-5"><a href="#cb80-5" aria-hidden="true" tabindex="-1"></a>  <span class="cf">def</span> volume</span>
+<span id="cb80-6"><a href="#cb80-6" aria-hidden="true" tabindex="-1"></a>    (<span class="fl">4.0</span><span class="kw">/</span><span class="dv">3</span>) <span class="kw">*</span> <span class="dt">Pi</span> <span class="kw">*</span> radius <span class="kw">**</span> <span class="dv">3</span></span>
+<span id="cb80-7"><a href="#cb80-7" aria-hidden="true" tabindex="-1"></a>  <span class="cf">end</span></span>
+<span id="cb80-8"><a href="#cb80-8" aria-hidden="true" tabindex="-1"></a><span class="cf">end</span></span></code></pre></div>
 </section>
 </section>
 </body>

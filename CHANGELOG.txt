@@ -1,3 +1,9 @@
+commit a4a877d12a2e391312ed027306a37150d04f8886
+Author: Felicitas Pojtinger <felicitas@pojtinger.com>
+Date:   Sat Nov 5 23:48:10 2022 +0100
+
+    feat: Add sections on classes and modules
+
 commit 774e9b945cbe257b0dd7595c9b2a34cd4c977b9f
 Author: Felicitas Pojtinger <felicitas@pojtinger.com>
 Date:   Sat Nov 5 21:54:21 2022 +0100
