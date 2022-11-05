@@ -653,3 +653,282 @@ We can also define a function in more consise way:
 ```ruby
 def double(num) = num * 2
 ```
+
+### Classes
+
+Besides the functional influence, Ruby is also a radically object-oriented language. As a result, it makes working with objects and classes very easy:
+
+```ruby
+class Square
+end
+```
+
+Through the `attr_reader`, `attr_writer` and `attr_accessor` notation we can add instance variables to a class:
+
+```ruby
+class Square
+  attr_accessor :side_length
+end
+```
+
+They can be read and written with `.`:
+
+```ruby
+s1 = Square.new # creates a new square
+s1.side_length = 5 # sets its side length
+puts "Side length of s1 = #{s1.side_length}" # prints the side length
+```
+
+Methods can be defined with `def`:
+
+```ruby
+class Square
+  attr_accessor :side_length
+
+  def area
+    @side_length * @side_length
+  end
+
+  def perimeter
+    4 * @side_length
+  end
+end
+```
+
+Note the use of `@` to access instance variables.
+
+Like many object-oriented languages, Ruby supports constructors (called initializers):
+
+```ruby
+class Square
+  attr_accessor :side_length
+
+  def initialize side_length = 0
+    @side_length = side_length
+  end
+
+  def area
+    @side_length * @side_length
+  end
+
+  def perimeter
+    4 * @side_length
+  end
+end
+```
+
+Variables defined by `attr_accessor` as public; we can make them private by ommiting their definition:
+
+```ruby
+class Human
+  def set_name name
+    @name = name
+  end
+
+  def get_name
+    @name
+  end
+end
+```
+
+In a similar way, we can use `private` and `protected` to change the visibility of methods:
+
+```ruby
+class Human
+  attr_accessor :name, :age
+
+  def tell_about_you
+    puts "Hello I am #{@name}. I am #{@age} years old"
+  end
+
+  private def tell_a_secret
+    puts "I am not a human, I am a computer program. He! Hee!!"
+  end
+end
+```
+
+In addition to instance variables, we can also create class variables which work similar to static variables in Java using the `@@` notation:
+
+```ruby
+class Robot
+  def initialize
+    if defined?(@@robot_count)
+      @@robot_count += 1
+    else
+      @@robot_count = 1
+    end
+  end
+
+  def self.robots_created
+    @@robot_count
+  end
+end
+```
+
+Similarly so, we can define class constants like so:
+
+```ruby
+class Something
+  Const = 25
+
+  def Const
+    Const
+  end
+end
+
+puts Something::Const
+```
+
+While inheritance is not the primary means of reusing code in Ruby, there is support for it in the language using the `<` notation:
+
+```ruby
+class Rectangle
+  attr_accessor :length, :width
+end
+
+class Square < Rectangle
+  def initialize length
+    @width = @length = length
+  end
+
+  def side_length
+    @width
+  end
+end
+```
+
+We can overwrite methods; interestingly it is possible to change a child's signature and use the `super` method in the child:
+
+```ruby
+class Square < Rectangle
+  def set_dimension side_length
+    super side_length, side_length
+  end
+end
+```
+
+I won't go into more details on these aspects as they are mostly similar to Java; the same goes for Threads, Exception and more. One thing uniquely powerful in Ruby is reflection; for example, you can get the methods of a class as an array using `.methods`:
+
+```ruby
+>> "a".methods
+=>
+[:unicode_normalized?,
+ :encode!,
+ :unicode_normalize,
+ :ascii_only?,
+ :unicode_normalize!,
+ :to_r,
+ :encode,
+ :to_c,
+ :include?,
+ :%,
+ :*,
+ :+,
+ :unpack,
+ # ...
+]
+```
+
+We can also get private methods using `.private_methods`, instance variables using `.instance_variables` etc.
+
+Another feature fairly unique to Ruby is method aliasing:
+
+```ruby
+class Something
+  def make_noise
+    puts "AAAAAAAAAAAAAAHHHHHHHHHHHHHH"
+  end
+
+  alias :shout :make_noise
+end
+
+Something.new.shout
+```
+
+This makes it very easy to define multiple method names for things that are frequently interchanged, such as `.delete` and `.remove`, or `.filter` and `.keep_if`.
+
+Due to Ruby's dynamic nature, we can also define classes dynamically and anonymously:
+
+```ruby
+person = Class.new do
+  def say_hi
+    'Hi'
+  end
+end.new
+```
+
+To deal with the complexities of such a dynamic language, Ruby has support for a safe navigation operator similar to Typescript:
+
+```ruby
+class Robot
+  attr_accessor :name
+end
+
+robot = Robot.new
+robot.name = "Zigor"
+puts "The robots name is #{robot.name}" if robot&.name
+```
+
+### Files, Modules and Mixins
+
+We can use the `require` function to import things from files; this is very similar to how early NodeJS works:
+
+```ruby
+# break_square.rb
+
+class Square
+  attr_accessor :side_length
+
+  def perimeter
+    @side_length * 4
+  end
+end
+```
+
+```ruby
+# break_main.rb
+
+require "./break_square.rb"
+
+s = Square.new
+s.side_length = 5
+puts "The squares perimeter is #{s.perimeter}"
+```
+
+However this quickly leads to problems with code organization, for example when two functions with a different purpose are named the same way. Ruby solves this issue with modules:
+
+```ruby
+module Star
+  def line
+    puts '*' * 20
+  end
+end
+
+module Dollar
+  def line
+    puts '$' * 20
+  end
+end
+```
+
+If we `include Star` and call `line`, we will print a line of starts, and if we do so with `Dollar`, calling `line` again will print dollar signs. Without including `line`, the method will be undefined.
+
+We can also call methods and access other objects in a module using the `::` operator:
+
+```ruby
+>> Dollar::line
+=> $$$$$$$$$$$$$$$$$$$$
+```
+
+The `include` keyword can be used to form Mixins, which will expose reusable code only to a specific class, i.e. make the `Pi` constant only accessible from a single class:
+
+```ruby
+class Sphere
+  include Constants
+  attr_accessor :radius
+
+  def volume
+    (4.0/3) * Pi * radius ** 3
+  end
+end
+```
