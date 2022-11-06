@@ -1,3 +1,9 @@
+commit e39f84739e6c1ffd25a3dea50baaee7f6fa07c3b
+Author: Felicitas Pojtinger <felicitas@pojtinger.com>
+Date:   Sun Nov 6 18:35:41 2022 +0100
+
+    feat: Add basic dRuby, Sinatra and ERB example
+
 commit fa9d67e00ff2e32799f11f3967e3569c67eaec12
 Author: Felicitas Pojtinger <felicitas@pojtinger.com>
 Date:   Sun Nov 6 13:36:26 2022 +0100
