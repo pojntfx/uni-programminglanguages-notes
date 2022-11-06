@@ -209,8 +209,6 @@ end
 
 ### Loops
 
-Ruby does not have traditional for loops, but multiple, more general constructs that allow for the usecases.
-
 Ruby has the `for` loop that we are all used to, but also more specialized constructs that allow for more expressive usecases:
 
 ```ruby
@@ -245,7 +243,7 @@ end
 
 ```ruby
 i=1
-while i<=10 do
+while i <= 10 do
   print "#{i}, "
   i+=1
 end
@@ -253,7 +251,7 @@ end
 
 ```ruby
 i=1
-until i>10 do
+until i > 10 do
   print "#{i}, "
   i+=1
 end
@@ -552,7 +550,7 @@ case age
 when 0..18
   puts "You are a kid"
 when (19..)
-  puts "You are grownup"
+  puts "You are grown up"
 end
 ```
 
@@ -1044,6 +1042,28 @@ person = Person.new "Zigor", "67893"
 
 We can also define class methods etc. using `define_singleton_method` or `class_eval` and `instance_eval` etc. to add arbitrary things such ass `attr_accessor`s to classes or even instances.
 
+## Usecases for Ruby
+
+**Recommended:**
+
+- Scripting
+- Web Development, especially old Web 2.0-style
+- MVPs in startups (see Twitter etc.)
+- Applications that require excellent extensibility (see Discourse etc.)
+- Applications working with highly dynamic data models
+- Systems administration on UNIX (i.e. Metasploit, Chef, Puppet, Homebrew)
+- "Glue code" between cloud systems (i.e. Fluentd)
+- Business Intelligence apps/CRUD systems (esp. with Ruby on Rails)
+
+**Not Recommended:**
+
+- Latency-dependend/real-time applications (garbage collection)
+- High throughput systems (i.e. high-RPS web services)
+- Memory- or CPU-constrained systems
+- Systems with static data models
+- Single-binary apps/self-contained applications (use Go)
+- Game or desktop application development (lack of bindings)
+
 ## Practical Examples
 
 ### dRuby
@@ -1095,6 +1115,8 @@ puts "#{person.name} #{person.local_time}"
 ```
 
 As we can see, with very little code we can get a lot of functionality.
+
+Demo: Write such a service and expose it to the internet with `ssh -R`, then consume it
 
 ### Sinatra
 
@@ -1149,5 +1171,7 @@ end
   </body>
 </html>
 ```
+
+Demo: Add a webserver with a dRuby interface for setting the data
 
 ## Questions
