@@ -20,10 +20,11 @@ Felicitas Pojtinger (fp036)
     -   3.7 Classes
     -   3.8 Files, Modules and Mixins
     -   3.9 Metaprogramming
--   4 Practical Examples
-    -   4.1 dRuby
-    -   4.2 Sinatra
--   5 Questions
+-   4 Usecases for Ruby
+-   5 Practical Examples
+    -   5.1 dRuby
+    -   5.2 Sinatra
+-   6 Questions
 
 Introduction
 
@@ -222,9 +223,6 @@ We can also assign values from a case statement:
 
 Loops
 
-Ruby does not have traditional for loops, but multiple, more general
-constructs that allow for the usecases.
-
 Ruby has the for loop that we are all used to, but also more specialized
 constructs that allow for more expressive usecases:
 
@@ -251,13 +249,13 @@ Or the times method, which is much more readable:
 while, until and the infinite loop loops still exist however:
 
     i=1
-    while i<=10 do
+    while i <= 10 do
       print "#{i}, "
       i+=1
     end
 
     i=1
-    until i>10 do
+    until i > 10 do
       print "#{i}, "
       i+=1
     end
@@ -507,7 +505,7 @@ It is also possible to define endless ranges:
     when 0..18
       puts "You are a kid"
     when (19..)
-      puts "You are grownup"
+      puts "You are grown up"
     end
 
 Functions
@@ -970,6 +968,30 @@ We can also define class methods etc. using define_singleton_method or
 class_eval and instance_eval etc. to add arbitrary things such ass
 attr_accessors to classes or even instances.
 
+Usecases for Ruby
+
+Recommended:
+
+-   Scripting
+-   Web Development, especially old Web 2.0-style
+-   MVPs in startups (see Twitter etc.)
+-   Applications that require excellent extensibility (see Discourse
+    etc.)
+-   Applications working with highly dynamic data models
+-   Systems administration on UNIX (i.e. Metasploit, Chef, Puppet,
+    Homebrew)
+-   “Glue code” between cloud systems (i.e. Fluentd)
+-   Business Intelligence apps/CRUD systems (esp. with Ruby on Rails)
+
+Not Recommended:
+
+-   Latency-dependend/real-time applications (garbage collection)
+-   High throughput systems (i.e. high-RPS web services)
+-   Memory- or CPU-constrained systems
+-   Systems with static data models
+-   Single-binary apps/self-contained applications (use Go)
+-   Game or desktop application development (lack of bindings)
+
 Practical Examples
 
 dRuby
@@ -1021,6 +1043,9 @@ And interact with the objects on the server like so:
 
 As we can see, with very little code we can get a lot of functionality.
 
+Demo: Write such a service and expose it to the internet with ssh -R,
+then consume it
+
 Sinatra
 
 Aside from Ruby on Rails, Sinatra is a very neat web framework. You can
@@ -1067,5 +1092,7 @@ By using ERB, we can render templates very easily:
         <h1>Hello, <%= @name %>!</h1>
       </body>
     </html>
+
+Demo: Add a webserver with a dRuby interface for setting the data
 
 Questions
