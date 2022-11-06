@@ -1,3 +1,9 @@
+commit fa9d67e00ff2e32799f11f3967e3569c67eaec12
+Author: Felicitas Pojtinger <felicitas@pojtinger.com>
+Date:   Sun Nov 6 13:36:26 2022 +0100
+
+    feat: Add more sections
+
 commit faaaa74969c200d2f2debe32aa9474949219ebdf
 Author: Felicitas Pojtinger <felicitas@pojtinger.com>
 Date:   Sun Nov 6 00:41:55 2022 +0100
