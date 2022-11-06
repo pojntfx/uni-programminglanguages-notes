@@ -1,3 +1,9 @@
+commit 0e6b496b5826aed4bb2b4167bc363e91d25bf593
+Author: Felicitas Pojtinger <felicitas@pojtinger.com>
+Date:   Sun Nov 6 19:21:28 2022 +0100
+
+    refactor: Make the todos app a questions app for the talk
+
 commit e39f84739e6c1ffd25a3dea50baaee7f6fa07c3b
 Author: Felicitas Pojtinger <felicitas@pojtinger.com>
 Date:   Sun Nov 6 18:35:41 2022 +0100
