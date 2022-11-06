@@ -25,7 +25,7 @@ License
 
 [AGPL-3.0 license badge]
 
-Uni Programming Languages Notes (c) 2021 Felicitas Pojtinger and
+Uni Programming Languages Notes (c) 2022 Felicitas Pojtinger and
 contributors
 
 SPDX-License-Identifier: AGPL-3.0
