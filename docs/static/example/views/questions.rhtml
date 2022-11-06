@@ -4,12 +4,12 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>TODOs</title>
+    <title>Questions</title>
   </head>
   <body>
-    <h1>TODOs</h1>
+    <h1>Questions</h1>
 
-    <form action="/todos" method="post">
+    <form action="/questions" method="post">
       <input type="text" name="title" id="title" placeholder="Title" /><br />
       <textarea
         name="body"
@@ -19,22 +19,22 @@
         placeholder="Body"
       ></textarea
       ><br />
-      <input type="submit" value="Create TODO" />
+      <input type="submit" value="Create question" />
     </form>
 
     <ul>
-      <% @todos.each do |todo| %>
+      <% @questions.each do |question| %>
       <li>
         <dl>
           <dt>Title</dt>
-          <dd><%= todo[:title] %></dd>
+          <dd><%= question[:title] %></dd>
 
           <dt>Body</dt>
-          <dd><%= todo[:body] %></dd>
+          <dd><%= question[:body] %></dd>
         </dl>
 
-        <form action="/todos/<%= todo[:id] %>" method="post">
-          <input type="submit" value="Delete TODO" />
+        <form action="/questions/<%= question[:id] %>" method="post">
+          <input type="submit" value="Delete question" />
         </form>
       </li>
       <% end %>

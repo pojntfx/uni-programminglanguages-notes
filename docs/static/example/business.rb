@@ -3,31 +3,31 @@ require 'securerandom'
 
 require './common'
 
-class TodosServer
-  attr_reader :todos
+class QuestionsServer
+  attr_reader :questions
 
   def initialize
-    @todos = []
+    @questions = []
   end
 
-  def add_todo(title, body)
-    todo = { id: SecureRandom.uuid, title: title, body: body }
+  def add_question(title, body)
+    question = { id: SecureRandom.uuid, title: title, body: body }
 
-    @todos << todo
+    @questions << question
 
-    todo[:id]
+    question[:id]
   end
 
-  def delete_todo(id)
-    @todos.delete_if do |todo|
-      todo[:id] == id
+  def delete_question(id)
+    @questions.delete_if do |question|
+      question[:id] == id
     end
 
     id
   end
 end
 
-DRb.start_service DRUBY_URI, TodosServer.new
+DRb.start_service DRUBY_URI, QuestionsServer.new
 
 puts "Business listening on URI #{DRUBY_URI}"
 
