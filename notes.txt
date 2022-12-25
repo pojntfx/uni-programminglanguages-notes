@@ -103,8 +103,8 @@ Timeline
 -   Subsequent evolution and growth outside Japan
 -   Ruby 3.0 released ~2020, introducing a type system for static
     analysis, fibers (similar to Goroutines, asyncio etc.), and
-    completing optimizations making it ~3x faster than Ruby 2.0
-    (from 2013)
+    completing optimizations making it ~3x faster than Ruby 2.0 (from
+    2013)
 
 Syntax
 
