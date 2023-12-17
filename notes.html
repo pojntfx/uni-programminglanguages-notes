@@ -9,216 +9,226 @@
   <meta name="keywords" content="hdm-stuttgart, programming-languages" />
   <title>Uni Programming Languages Notes</title>
   <style>
-    html {
-      line-height: 1.5;
-      font-family: Georgia, serif;
-      font-size: 20px;
-      color: #1a1a1a;
-      background-color: #fdfdfd;
-    }
-    body {
-      margin: 0 auto;
-      max-width: 36em;
-      padding-left: 50px;
-      padding-right: 50px;
-      padding-top: 50px;
-      padding-bottom: 50px;
-      hyphens: auto;
-      overflow-wrap: break-word;
-      text-rendering: optimizeLegibility;
-      font-kerning: normal;
-    }
-    @media (max-width: 600px) {
-      body {
-        font-size: 0.9em;
-        padding: 1em;
-      }
-      h1 {
-        font-size: 1.8em;
-      }
-    }
-    @media print {
-      body {
-        background-color: transparent;
-        color: black;
-        font-size: 12pt;
-      }
-      p, h2, h3 {
-        orphans: 3;
-        widows: 3;
-      }
-      h2, h3, h4 {
-        page-break-after: avoid;
-      }
-    }
-    p {
-      margin: 1em 0;
-    }
-    a {
-      color: #1a1a1a;
-    }
-    a:visited {
-      color: #1a1a1a;
-    }
-    img {
-      max-width: 100%;
-    }
-    h1, h2, h3, h4, h5, h6 {
-      margin-top: 1.4em;
-    }
-    h5, h6 {
-      font-size: 1em;
-      font-style: italic;
-    }
-    h6 {
-      font-weight: normal;
-    }
-    ol, ul {
-      padding-left: 1.7em;
-      margin-top: 1em;
-    }
-    li > ol, li > ul {
-      margin-top: 0;
-    }
-    blockquote {
-      margin: 1em 0 1em 1.7em;
-      padding-left: 1em;
-      border-left: 2px solid #e6e6e6;
-      color: #606060;
-    }
-    code {
-      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
-      font-size: 85%;
-      margin: 0;
-    }
-    pre {
-      margin: 1em 0;
-      overflow: auto;
-    }
-    pre code {
-      padding: 0;
-      overflow: visible;
-      overflow-wrap: normal;
-    }
-    .sourceCode {
-     background-color: transparent;
-     overflow: visible;
-    }
-    hr {
-      background-color: #1a1a1a;
-      border: none;
-      height: 1px;
-      margin: 1em 0;
-    }
-    table {
-      margin: 1em 0;
-      border-collapse: collapse;
-      width: 100%;
-      overflow-x: auto;
-      display: block;
-      font-variant-numeric: lining-nums tabular-nums;
-    }
-    table caption {
-      margin-bottom: 0.75em;
-    }
-    tbody {
-      margin-top: 0.5em;
-      border-top: 1px solid #1a1a1a;
-      border-bottom: 1px solid #1a1a1a;
-    }
-    th {
-      border-top: 1px solid #1a1a1a;
-      padding: 0.25em 0.5em 0.25em 0.5em;
-    }
-    td {
-      padding: 0.125em 0.5em 0.25em 0.5em;
-    }
-    header {
-      margin-bottom: 4em;
-      text-align: center;
-    }
-    #TOC li {
-      list-style: none;
-    }
-    #TOC ul {
-      padding-left: 1.3em;
-    }
-    #TOC > ul {
-      padding-left: 0;
-    }
-    #TOC a:not(:hover) {
-      text-decoration: none;
-    }
-    code{white-space: pre-wrap;}
-    span.smallcaps{font-variant: small-caps;}
-    span.underline{text-decoration: underline;}
-    div.column{display: inline-block; vertical-align: top; width: 50%;}
-    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
-    ul.task-list{list-style: none;}
-    pre > code.sourceCode { white-space: pre; position: relative; }
-    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-    pre > code.sourceCode > span:empty { height: 1.2em; }
-    .sourceCode { overflow: visible; }
-    code.sourceCode > span { color: inherit; text-decoration: inherit; }
-    div.sourceCode { margin: 1em 0; }
-    pre.sourceCode { margin: 0; }
-    @media screen {
-    div.sourceCode { overflow: auto; }
-    }
-    @media print {
-    pre > code.sourceCode { white-space: pre-wrap; }
-    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-    }
-    pre.numberSource code
-      { counter-reset: source-line 0; }
-    pre.numberSource code > span
-      { position: relative; left: -4em; counter-increment: source-line; }
-    pre.numberSource code > span > a:first-child::before
-      { content: counter(source-line);
-        position: relative; left: -1em; text-align: right; vertical-align: baseline;
-        border: none; display: inline-block;
-        -webkit-touch-callout: none; -webkit-user-select: none;
-        -khtml-user-select: none; -moz-user-select: none;
-        -ms-user-select: none; user-select: none;
-        padding: 0 4px; width: 4em;
-        color: #aaaaaa;
-      }
-    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
-    div.sourceCode
-      {   }
-    @media screen {
-    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-    }
-    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-    code span.at { color: #7d9029; } /* Attribute */
-    code span.bn { color: #40a070; } /* BaseN */
-    code span.bu { color: #008000; } /* BuiltIn */
-    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-    code span.ch { color: #4070a0; } /* Char */
-    code span.cn { color: #880000; } /* Constant */
-    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-    code span.dt { color: #902000; } /* DataType */
-    code span.dv { color: #40a070; } /* DecVal */
-    code span.er { color: #ff0000; font-weight: bold; } /* Error */
-    code span.ex { } /* Extension */
-    code span.fl { color: #40a070; } /* Float */
-    code span.fu { color: #06287e; } /* Function */
-    code span.im { color: #008000; font-weight: bold; } /* Import */
-    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-    code span.op { color: #666666; } /* Operator */
-    code span.ot { color: #007020; } /* Other */
-    code span.pp { color: #bc7a00; } /* Preprocessor */
-    code span.sc { color: #4070a0; } /* SpecialChar */
-    code span.ss { color: #bb6688; } /* SpecialString */
-    code span.st { color: #4070a0; } /* String */
-    code span.va { color: #19177c; } /* Variable */
-    code span.vs { color: #4070a0; } /* VerbatimString */
-    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-  </style>
+html {
+color: #1a1a1a;
+background-color: #fdfdfd;
+}
+body {
+margin: 0 auto;
+max-width: 36em;
+padding-left: 50px;
+padding-right: 50px;
+padding-top: 50px;
+padding-bottom: 50px;
+hyphens: auto;
+overflow-wrap: break-word;
+text-rendering: optimizeLegibility;
+font-kerning: normal;
+}
+@media (max-width: 600px) {
+body {
+font-size: 0.9em;
+padding: 12px;
+}
+h1 {
+font-size: 1.8em;
+}
+}
+@media print {
+html {
+background-color: white;
+}
+body {
+background-color: transparent;
+color: black;
+font-size: 12pt;
+}
+p, h2, h3 {
+orphans: 3;
+widows: 3;
+}
+h2, h3, h4 {
+page-break-after: avoid;
+}
+}
+p {
+margin: 1em 0;
+}
+a {
+color: #1a1a1a;
+}
+a:visited {
+color: #1a1a1a;
+}
+img {
+max-width: 100%;
+}
+h1, h2, h3, h4, h5, h6 {
+margin-top: 1.4em;
+}
+h5, h6 {
+font-size: 1em;
+font-style: italic;
+}
+h6 {
+font-weight: normal;
+}
+ol, ul {
+padding-left: 1.7em;
+margin-top: 1em;
+}
+li > ol, li > ul {
+margin-top: 0;
+}
+blockquote {
+margin: 1em 0 1em 1.7em;
+padding-left: 1em;
+border-left: 2px solid #e6e6e6;
+color: #606060;
+}
+code {
+font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+font-size: 85%;
+margin: 0;
+hyphens: manual;
+}
+pre {
+margin: 1em 0;
+overflow: auto;
+}
+pre code {
+padding: 0;
+overflow: visible;
+overflow-wrap: normal;
+}
+.sourceCode {
+background-color: transparent;
+overflow: visible;
+}
+hr {
+background-color: #1a1a1a;
+border: none;
+height: 1px;
+margin: 1em 0;
+}
+table {
+margin: 1em 0;
+border-collapse: collapse;
+width: 100%;
+overflow-x: auto;
+display: block;
+font-variant-numeric: lining-nums tabular-nums;
+}
+table caption {
+margin-bottom: 0.75em;
+}
+tbody {
+margin-top: 0.5em;
+border-top: 1px solid #1a1a1a;
+border-bottom: 1px solid #1a1a1a;
+}
+th {
+border-top: 1px solid #1a1a1a;
+padding: 0.25em 0.5em 0.25em 0.5em;
+}
+td {
+padding: 0.125em 0.5em 0.25em 0.5em;
+}
+header {
+margin-bottom: 4em;
+text-align: center;
+}
+#TOC li {
+list-style: none;
+}
+#TOC ul {
+padding-left: 1.3em;
+}
+#TOC > ul {
+padding-left: 0;
+}
+#TOC a:not(:hover) {
+text-decoration: none;
+}
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+width: 0.8em;
+margin: 0 0.8em 0.2em -1.6em;
+vertical-align: middle;
+}
+
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+{ counter-reset: source-line 0; }
+pre.numberSource code > span
+{ position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+{ content: counter(source-line);
+position: relative; left: -1em; text-align: right; vertical-align: baseline;
+border: none; display: inline-block;
+-webkit-touch-callout: none; -webkit-user-select: none;
+-khtml-user-select: none; -moz-user-select: none;
+-ms-user-select: none; user-select: none;
+padding: 0 4px; width: 4em;
+color: #aaaaaa;
+}
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa; padding-left: 4px; }
+div.sourceCode
+{ }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } 
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.at { color: #7d9029; } 
+code span.bn { color: #40a070; } 
+code span.bu { color: #008000; } 
+code span.cf { color: #007020; font-weight: bold; } 
+code span.ch { color: #4070a0; } 
+code span.cn { color: #880000; } 
+code span.co { color: #60a0b0; font-style: italic; } 
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.do { color: #ba2121; font-style: italic; } 
+code span.dt { color: #902000; } 
+code span.dv { color: #40a070; } 
+code span.er { color: #ff0000; font-weight: bold; } 
+code span.ex { } 
+code span.fl { color: #40a070; } 
+code span.fu { color: #06287e; } 
+code span.im { color: #008000; font-weight: bold; } 
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.kw { color: #007020; font-weight: bold; } 
+code span.op { color: #666666; } 
+code span.ot { color: #007020; } 
+code span.pp { color: #bc7a00; } 
+code span.sc { color: #4070a0; } 
+code span.ss { color: #bb6688; } 
+code span.st { color: #4070a0; } 
+code span.va { color: #19177c; } 
+code span.vs { color: #4070a0; } 
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } 
+</style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
 </head>
 <body>
 <header id="title-block-header">
@@ -228,62 +238,42 @@
 </header>
 <nav id="TOC" role="doc-toc">
 <ul>
-<li><a href="#introduction"><span class="toc-section-number">1.1</span>
-Introduction</a>
+<li><a href="#introduction" id="toc-introduction"><span class="toc-section-number">1.1</span> Introduction</a>
 <ul>
-<li><a href="#contributing"><span class="toc-section-number">1.1.1</span> Contributing</a></li>
-<li><a href="#license"><span class="toc-section-number">1.1.2</span>
-License</a></li>
+<li><a href="#contributing" id="toc-contributing"><span class="toc-section-number">1.1.1</span> Contributing</a></li>
+<li><a href="#license" id="toc-license"><span class="toc-section-number">1.1.2</span> License</a></li>
 </ul></li>
-<li><a href="#overview"><span class="toc-section-number">1.2</span>
-Overview</a>
+<li><a href="#overview" id="toc-overview"><span class="toc-section-number">1.2</span> Overview</a>
 <ul>
-<li><a href="#general-design"><span class="toc-section-number">1.2.1</span> General Design</a></li>
-<li><a href="#implementation-details"><span class="toc-section-number">1.2.2</span> Implementation Details</a></li>
-<li><a href="#users"><span class="toc-section-number">1.2.3</span>
-Users</a></li>
-<li><a href="#timeline"><span class="toc-section-number">1.2.4</span>
-Timeline</a></li>
+<li><a href="#general-design" id="toc-general-design"><span class="toc-section-number">1.2.1</span> General Design</a></li>
+<li><a href="#implementation-details" id="toc-implementation-details"><span class="toc-section-number">1.2.2</span> Implementation Details</a></li>
+<li><a href="#users" id="toc-users"><span class="toc-section-number">1.2.3</span> Users</a></li>
+<li><a href="#timeline" id="toc-timeline"><span class="toc-section-number">1.2.4</span> Timeline</a></li>
 </ul></li>
-<li><a href="#syntax"><span class="toc-section-number">1.3</span>
-Syntax</a>
+<li><a href="#syntax" id="toc-syntax"><span class="toc-section-number">1.3</span> Syntax</a>
 <ul>
-<li><a href="#logic"><span class="toc-section-number">1.3.1</span>
-Logic</a></li>
-<li><a href="#loops"><span class="toc-section-number">1.3.2</span>
-Loops</a></li>
-<li><a href="#arrays"><span class="toc-section-number">1.3.3</span>
-Arrays</a></li>
-<li><a href="#hashes"><span class="toc-section-number">1.3.4</span>
-Hashes</a></li>
-<li><a href="#ranges"><span class="toc-section-number">1.3.5</span>
-Ranges</a></li>
-<li><a href="#functions"><span class="toc-section-number">1.3.6</span>
-Functions</a></li>
-<li><a href="#classes"><span class="toc-section-number">1.3.7</span>
-Classes</a></li>
-<li><a href="#files-modules-and-mixins"><span class="toc-section-number">1.3.8</span> Files, Modules and
+<li><a href="#logic" id="toc-logic"><span class="toc-section-number">1.3.1</span> Logic</a></li>
+<li><a href="#loops" id="toc-loops"><span class="toc-section-number">1.3.2</span> Loops</a></li>
+<li><a href="#arrays" id="toc-arrays"><span class="toc-section-number">1.3.3</span> Arrays</a></li>
+<li><a href="#hashes" id="toc-hashes"><span class="toc-section-number">1.3.4</span> Hashes</a></li>
+<li><a href="#ranges" id="toc-ranges"><span class="toc-section-number">1.3.5</span> Ranges</a></li>
+<li><a href="#functions" id="toc-functions"><span class="toc-section-number">1.3.6</span> Functions</a></li>
+<li><a href="#classes" id="toc-classes"><span class="toc-section-number">1.3.7</span> Classes</a></li>
+<li><a href="#files-modules-and-mixins" id="toc-files-modules-and-mixins"><span class="toc-section-number">1.3.8</span> Files, Modules and
 Mixins</a></li>
-<li><a href="#metaprogramming"><span class="toc-section-number">1.3.9</span> Metaprogramming</a></li>
+<li><a href="#metaprogramming" id="toc-metaprogramming"><span class="toc-section-number">1.3.9</span> Metaprogramming</a></li>
 </ul></li>
-<li><a href="#usecases-for-ruby"><span class="toc-section-number">1.4</span> Usecases for Ruby</a></li>
-<li><a href="#practical-examples"><span class="toc-section-number">1.5</span> Practical Examples</a>
+<li><a href="#usecases-for-ruby" id="toc-usecases-for-ruby"><span class="toc-section-number">1.4</span> Usecases for Ruby</a></li>
+<li><a href="#practical-examples" id="toc-practical-examples"><span class="toc-section-number">1.5</span> Practical Examples</a>
 <ul>
-<li><a href="#druby"><span class="toc-section-number">1.5.1</span>
-dRuby</a></li>
-<li><a href="#sinatra"><span class="toc-section-number">1.5.2</span>
-Sinatra</a></li>
+<li><a href="#druby" id="toc-druby"><span class="toc-section-number">1.5.1</span> dRuby</a></li>
+<li><a href="#sinatra" id="toc-sinatra"><span class="toc-section-number">1.5.2</span> Sinatra</a></li>
 </ul></li>
-<li><a href="#questions"><span class="toc-section-number">1.6</span>
-Questions</a></li>
+<li><a href="#questions" id="toc-questions"><span class="toc-section-number">1.6</span> Questions</a></li>
 </ul>
 </nav>
-<section id="introduction" data-number="0.1">
-<h2 data-number="1.1"><span class="header-section-number">1.1</span>
-Introduction</h2>
-<section id="contributing" data-number="0.1.1">
-<h3 data-number="1.1.1"><span class="header-section-number">1.1.1</span>
-Contributing</h3>
+<h2 data-number="1.1" id="introduction"><span class="header-section-number">1.1</span> Introduction</h2>
+<h3 data-number="1.1.1" id="contributing"><span class="header-section-number">1.1.1</span> Contributing</h3>
 <p>These study materials are heavily based on <a href="https://www.hdm-stuttgart.de/studierende/abteilungen/sprachenzentrum/kursangebot/kursangebot/block?sgname=Medieninformatik+%28Bachelor%2C+7+Semester%29&amp;sgblockID=2573358&amp;blockname=Aktuelle+Programmiersprachen&amp;sgang=550033">professor
 Ihler’s “Aktuelle Programmiersprachen” lecture at HdM Stuttgart</a>.</p>
 <p><strong>Found an error or have a suggestion?</strong> Please open an
@@ -294,10 +284,7 @@ issue on GitHub (<a href="https://github.com/pojntfx/uni-programminglanguages-no
 </figure>
 <p>If you like the study materials, a GitHub star is always appreciated
 :)</p>
-</section>
-<section id="license" data-number="0.1.2">
-<h3 data-number="1.1.2"><span class="header-section-number">1.1.2</span>
-License</h3>
+<h3 data-number="1.1.2" id="license"><span class="header-section-number">1.1.2</span> License</h3>
 <figure>
 <img src="data:image/png;base64,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" width="128" alt="AGPL-3.0 license badge" />
 <figcaption aria-hidden="true">AGPL-3.0 license badge</figcaption>
@@ -305,14 +292,8 @@ License</h3>
 <p>Uni Programming Languages Notes (c) 2022 Felicitas Pojtinger and
 contributors</p>
 <p>SPDX-License-Identifier: AGPL-3.0 </p>
-</section>
-</section>
-<section id="overview" data-number="0.2">
-<h2 data-number="1.2"><span class="header-section-number">1.2</span>
-Overview</h2>
-<section id="general-design" data-number="0.2.1">
-<h3 data-number="1.2.1"><span class="header-section-number">1.2.1</span>
-General Design</h3>
+<h2 data-number="1.2" id="overview"><span class="header-section-number">1.2</span> Overview</h2>
+<h3 data-number="1.2.1" id="general-design"><span class="header-section-number">1.2.1</span> General Design</h3>
 <ul>
 <li>“A dynamic, open source programming language with a focus on
 simplicity and productivity. It has an elegant syntax that is natural to
@@ -331,10 +312,7 @@ capabilities</li>
 (instance variables with <code>@</code>, globals with <code>$</code>
 etc.)</li>
 </ul>
-</section>
-<section id="implementation-details" data-number="0.2.2">
-<h3 data-number="1.2.2"><span class="header-section-number">1.2.2</span>
-Implementation Details</h3>
+<h3 data-number="1.2.2" id="implementation-details"><span class="header-section-number">1.2.2</span> Implementation Details</h3>
 <ul>
 <li>Exception handling similar to Java &amp; Python, but no checked
 exceptions</li>
@@ -347,10 +325,7 @@ exceptions</li>
 TruffleRuby on GraalVM, mruby for embedded uses, Artichoke for
 WebAssembly and Rust)</li>
 </ul>
-</section>
-<section id="users" data-number="0.2.3">
-<h3 data-number="1.2.3"><span class="header-section-number">1.2.3</span>
-Users</h3>
+<h3 data-number="1.2.3" id="users"><span class="header-section-number">1.2.3</span> Users</h3>
 <ul>
 <li>Twitter</li>
 <li>Mastodon</li>
@@ -364,10 +339,7 @@ Users</h3>
 <li>Basecamp</li>
 <li>Kickstarter</li>
 </ul>
-</section>
-<section id="timeline" data-number="0.2.4">
-<h3 data-number="1.2.4"><span class="header-section-number">1.2.4</span>
-Timeline</h3>
+<h3 data-number="1.2.4" id="timeline"><span class="header-section-number">1.2.4</span> Timeline</h3>
 <ul>
 <li>First concepts and prototypes ~1993</li>
 <li>First release ~1995, became most popular language in Japan by
@@ -380,14 +352,8 @@ optimizations making it ~3x faster than Ruby 2.0 (from
 <li></li>
 </ol></li>
 </ul>
-</section>
-</section>
-<section id="syntax" data-number="0.3">
-<h2 data-number="1.3"><span class="header-section-number">1.3</span>
-Syntax</h2>
-<section id="logic" data-number="0.3.1">
-<h3 data-number="1.3.1"><span class="header-section-number">1.3.1</span>
-Logic</h3>
+<h2 data-number="1.3" id="syntax"><span class="header-section-number">1.3</span> Syntax</h2>
+<h3 data-number="1.3.1" id="logic"><span class="header-section-number">1.3.1</span> Logic</h3>
 <p>Typical logical operators:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode ruby"><code class="sourceCode ruby"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&gt;&gt;</span> <span class="dv">2</span> <span class="kw">&lt;</span> <span class="dv">3</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="kw">=&gt;</span> <span class="dv">true</span></span></code></pre></div>
@@ -477,10 +443,7 @@ own matcher classes:</p>
 <span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>        <span class="cf">when</span> <span class="dv">0</span><span class="kw">..</span><span class="dv">39</span>    : <span class="ch">&#39;D&#39;</span></span>
 <span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span> <span class="st">&quot;Unable to determine grade. Try again.&quot;</span></span>
 <span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="cf">end</span></span></code></pre></div>
-</section>
-<section id="loops" data-number="0.3.2">
-<h3 data-number="1.3.2"><span class="header-section-number">1.3.2</span>
-Loops</h3>
+<h3 data-number="1.3.2" id="loops"><span class="header-section-number">1.3.2</span> Loops</h3>
 <p>Ruby has the <code>for</code> loop that we are all used to, but also
 more specialized constructs that allow for more expressive usecases:</p>
 <div class="sourceCode" id="cb14"><pre class="sourceCode ruby"><code class="sourceCode ruby"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="cf">in</span> <span class="dv">0</span><span class="kw">..</span><span class="dv">10</span></span>
@@ -528,10 +491,7 @@ more specialized constructs that allow for more expressive usecases:</p>
 <span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>  option <span class="kw">=</span> <span class="fu">gets</span><span class="at">.chop</span></span>
 <span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>  <span class="cf">redo</span> <span class="cf">if</span> option <span class="kw">==</span> <span class="ch">&#39;y&#39;</span></span>
 <span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a><span class="cf">end</span></span></code></pre></div>
-</section>
-<section id="arrays" data-number="0.3.3">
-<h3 data-number="1.3.3"><span class="header-section-number">1.3.3</span>
-Arrays</h3>
+<h3 data-number="1.3.3" id="arrays"><span class="header-section-number">1.3.3</span> Arrays</h3>
 <p>Arrays in Ruby can contain multiple types and work as expected; there
 is no array vs collection divide:</p>
 <div class="sourceCode" id="cb24"><pre class="sourceCode ruby"><code class="sourceCode ruby"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>my_array <span class="kw">=</span> <span class="kw">[</span><span class="st">&quot;Something&quot;</span>, <span class="dv">123</span>, <span class="dt">Time</span><span class="at">.now</span><span class="kw">]</span></span></code></pre></div>
@@ -609,10 +569,7 @@ know if from JS:</p>
 <span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="kw">=&gt;</span> <span class="kw">[</span><span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">7</span>, <span class="dv">8</span>, <span class="dv">9</span>, <span class="dv">10</span><span class="kw">]</span></span>
 <span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a><span class="kw">&gt;&gt;</span> array<span class="at">.keep_if</span><span class="kw">{</span> <span class="kw">|</span>element<span class="kw">|</span> element <span class="kw">%</span> <span class="dv">2</span> <span class="kw">==</span> <span class="dv">0</span><span class="kw">}</span></span>
 <span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a><span class="kw">=&gt;</span> <span class="kw">[</span><span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">6</span>, <span class="dv">8</span>, <span class="dv">10</span><span class="kw">]</span></span></code></pre></div>
-</section>
-<section id="hashes" data-number="0.3.4">
-<h3 data-number="1.3.4"><span class="header-section-number">1.3.4</span>
-Hashes</h3>
+<h3 data-number="1.3.4" id="hashes"><span class="header-section-number">1.3.4</span> Hashes</h3>
 <p>Hashes can be used to store mapped information:</p>
 <div class="sourceCode" id="cb39"><pre class="sourceCode ruby"><code class="sourceCode ruby"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>mark <span class="kw">=</span> <span class="kw">{}</span></span>
 <span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>mark<span class="kw">[</span><span class="vs">&#39;English&#39;</span><span class="kw">]</span> <span class="kw">=</span> <span class="dv">50</span></span>
@@ -661,10 +618,7 @@ can use the same MapReduce functions on hashes:</p>
 <span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a><span class="kw">=&gt;</span> <span class="kw">{</span><span class="wa">:a=</span><span class="kw">&gt;</span><span class="dv">1</span>, <span class="wa">:b=</span><span class="kw">&gt;</span><span class="dv">2</span>, <span class="wa">:c=</span><span class="kw">&gt;</span><span class="dv">3</span><span class="kw">}</span></span>
 <span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a><span class="kw">&gt;&gt;</span> hash<span class="at">.transform_values</span><span class="kw">{</span> <span class="kw">|</span>value<span class="kw">|</span> value <span class="kw">*</span> value <span class="kw">}</span></span>
 <span id="cb46-4"><a href="#cb46-4" aria-hidden="true" tabindex="-1"></a><span class="kw">=&gt;</span> <span class="kw">{</span><span class="wa">:a=</span><span class="kw">&gt;</span><span class="dv">1</span>, <span class="wa">:b=</span><span class="kw">&gt;</span><span class="dv">4</span>, <span class="wa">:c=</span><span class="kw">&gt;</span><span class="dv">9</span><span class="kw">}</span></span></code></pre></div>
-</section>
-<section id="ranges" data-number="0.3.5">
-<h3 data-number="1.3.5"><span class="header-section-number">1.3.5</span>
-Ranges</h3>
+<h3 data-number="1.3.5" id="ranges"><span class="header-section-number">1.3.5</span> Ranges</h3>
 <p>Ranges are a cool concept in Ruby that we’ve used before. We can use
 them with the <code>..</code> notation:</p>
 <div class="sourceCode" id="cb47"><pre class="sourceCode ruby"><code class="sourceCode ruby"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&gt;&gt;</span> (<span class="dv">1</span><span class="kw">..</span><span class="dv">5</span>)<span class="at">.each</span> <span class="kw">{|</span>a<span class="kw">|</span> <span class="fu">print</span> <span class="st">&quot;</span><span class="sc">#{</span>a<span class="sc">}</span><span class="st">, &quot;</span> <span class="kw">}</span></span>
@@ -708,10 +662,7 @@ described before, they can also serve as conditions:</p>
 <span id="cb52-7"><a href="#cb52-7" aria-hidden="true" tabindex="-1"></a><span class="cf">when</span> (<span class="dv">19</span><span class="kw">..</span>)</span>
 <span id="cb52-8"><a href="#cb52-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">puts</span> <span class="st">&quot;You are grown up&quot;</span></span>
 <span id="cb52-9"><a href="#cb52-9" aria-hidden="true" tabindex="-1"></a><span class="cf">end</span></span></code></pre></div>
-</section>
-<section id="functions" data-number="0.3.6">
-<h3 data-number="1.3.6"><span class="header-section-number">1.3.6</span>
-Functions</h3>
+<h3 data-number="1.3.6" id="functions"><span class="header-section-number">1.3.6</span> Functions</h3>
 <p>As mentioned before, Ruby draws a lot of inspiration from functional
 programming languages, and functions are a primary building block in the
 language as a result.</p>
@@ -780,10 +731,7 @@ with all used parameters:</p>
 <span id="cb59-11"><a href="#cb59-11" aria-hidden="true" tabindex="-1"></a>decorate <span class="st">&quot;Hello World!&quot;</span></span></code></pre></div>
 <p>We can also define a function in more consise way:</p>
 <div class="sourceCode" id="cb60"><pre class="sourceCode ruby"><code class="sourceCode ruby"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="cf">def</span> double(num) <span class="kw">=</span> num <span class="kw">*</span> <span class="dv">2</span></span></code></pre></div>
-</section>
-<section id="classes" data-number="0.3.7">
-<h3 data-number="1.3.7"><span class="header-section-number">1.3.7</span>
-Classes</h3>
+<h3 data-number="1.3.7" id="classes"><span class="header-section-number">1.3.7</span> Classes</h3>
 <p>Besides the functional influence, Ruby is also a radically
 object-oriented language. As a result, it makes working with objects and
 classes very easy:</p>
@@ -956,10 +904,8 @@ support for a safe navigation operator similar to Typescript:</p>
 <span id="cb75-5"><a href="#cb75-5" aria-hidden="true" tabindex="-1"></a>robot <span class="kw">=</span> <span class="dt">Robot</span><span class="at">.new</span></span>
 <span id="cb75-6"><a href="#cb75-6" aria-hidden="true" tabindex="-1"></a>robot<span class="at">.name</span> <span class="kw">=</span> <span class="st">&quot;Zigor&quot;</span></span>
 <span id="cb75-7"><a href="#cb75-7" aria-hidden="true" tabindex="-1"></a><span class="fu">puts</span> <span class="st">&quot;The robots name is </span><span class="sc">#{</span>robot<span class="at">.name</span><span class="sc">}</span><span class="st">&quot;</span> <span class="cf">if</span> robot<span class="kw">&amp;</span><span class="at">.name</span></span></code></pre></div>
-</section>
-<section id="files-modules-and-mixins" data-number="0.3.8">
-<h3 data-number="1.3.8"><span class="header-section-number">1.3.8</span>
-Files, Modules and Mixins</h3>
+<h3 data-number="1.3.8" id="files-modules-and-mixins"><span class="header-section-number">1.3.8</span> Files, Modules and
+Mixins</h3>
 <p>We can use the <code>require</code> function to import things from
 files; this is very similar to how early NodeJS works:</p>
 <div class="sourceCode" id="cb76"><pre class="sourceCode ruby"><code class="sourceCode ruby"><span id="cb76-1"><a href="#cb76-1" aria-hidden="true" tabindex="-1"></a><span class="co"># break_square.rb</span></span>
@@ -1011,10 +957,7 @@ will expose reusable code only to a specific class, i.e. make the
 <span id="cb80-6"><a href="#cb80-6" aria-hidden="true" tabindex="-1"></a>    (<span class="fl">4.0</span><span class="kw">/</span><span class="dv">3</span>) <span class="kw">*</span> <span class="dt">Pi</span> <span class="kw">*</span> radius <span class="kw">**</span> <span class="dv">3</span></span>
 <span id="cb80-7"><a href="#cb80-7" aria-hidden="true" tabindex="-1"></a>  <span class="cf">end</span></span>
 <span id="cb80-8"><a href="#cb80-8" aria-hidden="true" tabindex="-1"></a><span class="cf">end</span></span></code></pre></div>
-</section>
-<section id="metaprogramming" data-number="0.3.9">
-<h3 data-number="1.3.9"><span class="header-section-number">1.3.9</span>
-Metaprogramming</h3>
+<h3 data-number="1.3.9" id="metaprogramming"><span class="header-section-number">1.3.9</span> Metaprogramming</h3>
 <p>Ruby is a very flexible langauge, and as such it allows
 metaprogramming. For example, directly call a method using the
 <code>send</code> function by passing in the <code>speak</code>
@@ -1111,11 +1054,7 @@ define a method at runtime:</p>
 <code>define_singleton_method</code> or <code>class_eval</code> and
 <code>instance_eval</code> etc. to add arbitrary things such ass
 <code>attr_accessor</code>s to classes or even instances.</p>
-</section>
-</section>
-<section id="usecases-for-ruby" data-number="0.4">
-<h2 data-number="1.4"><span class="header-section-number">1.4</span>
-Usecases for Ruby</h2>
+<h2 data-number="1.4" id="usecases-for-ruby"><span class="header-section-number">1.4</span> Usecases for Ruby</h2>
 <p><strong>Recommended:</strong></p>
 <ul>
 <li>Scripting</li>
@@ -1139,13 +1078,8 @@ Rails)</li>
 <li>Single-binary apps/self-contained applications (use Go)</li>
 <li>Game or desktop application development (lack of bindings)</li>
 </ul>
-</section>
-<section id="practical-examples" data-number="0.5">
-<h2 data-number="1.5"><span class="header-section-number">1.5</span>
-Practical Examples</h2>
-<section id="druby" data-number="0.5.1">
-<h3 data-number="1.5.1"><span class="header-section-number">1.5.1</span>
-dRuby</h3>
+<h2 data-number="1.5" id="practical-examples"><span class="header-section-number">1.5</span> Practical Examples</h2>
+<h3 data-number="1.5.1" id="druby"><span class="header-section-number">1.5.1</span> dRuby</h3>
 <p>While not recommended in modern applications (see professor Kriha’s
 “Distributed Systems” course), dRuby is an excellent example of an
 idiomatic Ruby way of creating servers and clients, specifically
@@ -1191,10 +1125,7 @@ distributed objects. We can define a server like so:</p>
 functionality.</p>
 <p>Demo: Write such a service and expose it to the internet with
 <code>ssh -R</code>, then consume it</p>
-</section>
-<section id="sinatra" data-number="0.5.2">
-<h3 data-number="1.5.2"><span class="header-section-number">1.5.2</span>
-Sinatra</h3>
+<h3 data-number="1.5.2" id="sinatra"><span class="header-section-number">1.5.2</span> Sinatra</h3>
 <p>Aside from Ruby on Rails, Sinatra is a very neat web framework. You
 can define a web server in just three lines of code:</p>
 <div class="sourceCode" id="cb90"><pre class="sourceCode ruby"><code class="sourceCode ruby"><span id="cb90-1"><a href="#cb90-1" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span> <span class="vs">&#39;sinatra&#39;</span></span>
@@ -1222,23 +1153,18 @@ can define a web server in just three lines of code:</p>
 <span id="cb92-6"><a href="#cb92-6" aria-hidden="true" tabindex="-1"></a>  erb <span class="wa">:index</span></span>
 <span id="cb92-7"><a href="#cb92-7" aria-hidden="true" tabindex="-1"></a><span class="cf">end</span></span></code></pre></div>
 <div class="sourceCode" id="cb93"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb93-1"><a href="#cb93-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;!DOCTYPE </span>html<span class="dt">&gt;</span></span>
-<span id="cb93-2"><a href="#cb93-2" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;html</span> <span class="er">lang</span><span class="ot">=</span><span class="st">&quot;en&quot;</span><span class="kw">&gt;</span></span>
-<span id="cb93-3"><a href="#cb93-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;head&gt;</span></span>
-<span id="cb93-4"><a href="#cb93-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;meta</span> <span class="er">charset</span><span class="ot">=</span><span class="st">&quot;UTF-8&quot;</span> <span class="kw">/&gt;</span></span>
-<span id="cb93-5"><a href="#cb93-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;meta</span> <span class="er">http-equiv</span><span class="ot">=</span><span class="st">&quot;X-UA-Compatible&quot;</span> <span class="er">content</span><span class="ot">=</span><span class="st">&quot;IE=edge&quot;</span> <span class="kw">/&gt;</span></span>
-<span id="cb93-6"><a href="#cb93-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;meta</span> <span class="er">name</span><span class="ot">=</span><span class="st">&quot;viewport&quot;</span> <span class="er">content</span><span class="ot">=</span><span class="st">&quot;width=device-width, initial-scale=1.0&quot;</span> <span class="kw">/&gt;</span></span>
-<span id="cb93-7"><a href="#cb93-7" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;title&gt;</span>ERB Learning<span class="kw">&lt;/title&gt;</span></span>
-<span id="cb93-8"><a href="#cb93-8" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;/head&gt;</span></span>
-<span id="cb93-9"><a href="#cb93-9" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;body&gt;</span></span>
-<span id="cb93-10"><a href="#cb93-10" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;h1&gt;</span>Hello, <span class="er">&lt;</span>%= @name %&gt;!<span class="kw">&lt;/h1&gt;</span></span>
-<span id="cb93-11"><a href="#cb93-11" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;/body&gt;</span></span>
-<span id="cb93-12"><a href="#cb93-12" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/html&gt;</span></span></code></pre></div>
+<span id="cb93-2"><a href="#cb93-2" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">html</span> <span class="er">lang</span><span class="ot">=</span><span class="st">&quot;en&quot;</span><span class="dt">&gt;</span></span>
+<span id="cb93-3"><a href="#cb93-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&lt;</span><span class="kw">head</span><span class="dt">&gt;</span></span>
+<span id="cb93-4"><a href="#cb93-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">meta</span> <span class="er">charset</span><span class="ot">=</span><span class="st">&quot;UTF-8&quot;</span> <span class="dt">/&gt;</span></span>
+<span id="cb93-5"><a href="#cb93-5" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">meta</span> <span class="er">http-equiv</span><span class="ot">=</span><span class="st">&quot;X-UA-Compatible&quot;</span> <span class="er">content</span><span class="ot">=</span><span class="st">&quot;IE=edge&quot;</span> <span class="dt">/&gt;</span></span>
+<span id="cb93-6"><a href="#cb93-6" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">meta</span> <span class="er">name</span><span class="ot">=</span><span class="st">&quot;viewport&quot;</span> <span class="er">content</span><span class="ot">=</span><span class="st">&quot;width=device-width, initial-scale=1.0&quot;</span> <span class="dt">/&gt;</span></span>
+<span id="cb93-7"><a href="#cb93-7" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">title</span><span class="dt">&gt;</span>ERB Learning<span class="dt">&lt;/</span><span class="kw">title</span><span class="dt">&gt;</span></span>
+<span id="cb93-8"><a href="#cb93-8" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&lt;/</span><span class="kw">head</span><span class="dt">&gt;</span></span>
+<span id="cb93-9"><a href="#cb93-9" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&lt;</span><span class="kw">body</span><span class="dt">&gt;</span></span>
+<span id="cb93-10"><a href="#cb93-10" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">h1</span><span class="dt">&gt;</span>Hello, <span class="er">&lt;</span>%= @name %&gt;!<span class="dt">&lt;/</span><span class="kw">h1</span><span class="dt">&gt;</span></span>
+<span id="cb93-11"><a href="#cb93-11" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&lt;/</span><span class="kw">body</span><span class="dt">&gt;</span></span>
+<span id="cb93-12"><a href="#cb93-12" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">html</span><span class="dt">&gt;</span></span></code></pre></div>
 <p>Demo: Add a webserver with a dRuby interface for setting the data</p>
-</section>
-</section>
-<section id="questions" data-number="0.6">
-<h2 data-number="1.6"><span class="header-section-number">1.6</span>
-Questions</h2>
-</section>
+<h2 data-number="1.6" id="questions"><span class="header-section-number">1.6</span> Questions</h2>
 </body>
 </html>
